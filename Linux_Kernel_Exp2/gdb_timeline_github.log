@@ -1,0 +1,2541 @@
+Breakpoint 1 at 0xc114771b: file fs/exec.c, line 1643.
+Breakpoint 2 at 0xc16d1192: file kernel/sched/core.c, line 3104.
+Breakpoint 3 at 0xc16d177b: file kernel/sched/core.c, line 3188.
+Breakpoint 4 at 0xc101564a: file arch/x86/kernel/process_32.c, line 243.
+Breakpoint 5 at 0xc1015b24: file arch/x86/kernel/process_32.c, line 318.
+Breakpoint 6 at 0xc1034cfe: file arch/x86/kernel/apic/apic.c, line 913.
+Breakpoint 7 at 0xc1017a95: file arch/x86/kernel/irq.c, line 215.
+Breakpoint 8 at 0xc16d4fe0: file arch/x86/entry/entry_32.S, line 254.
+Breakpoint 9 at 0xc16d4fe0: file arch/x86/entry/entry_32.S, line 254.
+Breakpoint 10 at 0xc16d5096: file arch/x86/entry/entry_32.S, line 362.
+Breakpoint 11 at 0xc103f260: file arch/x86/mm/fault.c, line 1295.
+Breakpoint 12 at 0xc100196c: file arch/x86/entry/common.c, line 408.
+Breakpoint 13 at 0xc1001aa9: file arch/x86/entry/common.c, line 486.
+Breakpoint 14 at 0xc1075feb: file kernel/sched/fair.c, line 4152.
+Breakpoint 15 at 0xc10748ba: file kernel/sched/fair.c, line 4200.
+Breakpoint 16 at 0xc1001879: prepare_exit_to_usermode. (4 locations)
+Breakpoint 17 at 0xc1069a97: file ./arch/x86/include/asm/bitops.h, line 75.
+add symbol table from file "/home/nudt/abc" at
+	.text_addr = 0x80482b0
+Breakpoint 18 at 0x8048e52: file abc.c, line 13.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28946981957
+Running processes: 1
+[USER] Hit main()
+
+Breakpoint 18, main () at abc.c:13
+13	int main() {
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28946981957
+Running processes: 1
+[USER] Hit main()
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3fb4) at arch/x86/kernel/apic/apic.c:913
+913	{
+Breakpoint 19 at 0xc1070ad9: file kernel/sched/fair.c, line 702.
+Type commands for breakpoint(s) 19, one per line.
+End with a line saying just "end".
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc114771b in do_execve at fs/exec.c:1643
+2       breakpoint     keep y   0xc16d1192 in __schedule at kernel/sched/core.c:3104
+3       breakpoint     keep y   0xc16d177b in __schedule at kernel/sched/core.c:3188
+4       breakpoint     keep y   0xc101564a in __switch_to at arch/x86/kernel/process_32.c:243
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        continue
+5       breakpoint     keep y   0xc1015b24 in __switch_to at arch/x86/kernel/process_32.c:318
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        bt
+        continue
+6       breakpoint     keep y   0xc1034cfe in smp_apic_timer_interrupt at arch/x86/kernel/apic/apic.c:913
+	breakpoint already hit 1 time
+7       breakpoint     keep y   0xc1017a95 in do_IRQ at arch/x86/kernel/irq.c:215
+8       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+9       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+10      breakpoint     keep y   0xc16d5096 arch/x86/entry/entry_32.S:362
+11      breakpoint     keep y   0xc103f260 in do_page_fault at arch/x86/mm/fault.c:1295
+12      breakpoint     keep y   0xc100196c in do_fast_syscall_32 at arch/x86/entry/common.c:408
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+13      breakpoint     keep y   0xc1001aa9 in do_fast_syscall_32 at arch/x86/entry/common.c:486
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+14      breakpoint     keep y   0xc1075feb in enqueue_task_fair at kernel/sched/fair.c:4152
+        printf "[ENQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        continue
+15      breakpoint     keep y   0xc10748ba in dequeue_task_fair at kernel/sched/fair.c:4200
+        printf "[DEQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        continue
+16      breakpoint     keep y   <MULTIPLE> 
+16.1                        y     0xc1001879 in prepare_exit_to_usermode at arch/x86/entry/common.c:271
+16.2                        y     0xc10018b7 in syscall_return_slowpath at arch/x86/entry/common.c:280
+16.3                        y     0xc100194d in do_syscall_32_irqs_on at arch/x86/entry/common.c:280
+16.4                        y     0xc1001a3c in do_fast_syscall_32 at arch/x86/entry/common.c:280
+17      breakpoint     keep y   0xc1069a97 in resched_curr at ./arch/x86/include/asm/bitops.h:75
+18      breakpoint     keep y   0x08048e52 in main at abc.c:13
+	breakpoint already hit 1 time
+19      breakpoint     keep y   0xc1070ad9 in update_curr at kernel/sched/fair.c:702
+        bt
+        continue
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28946981957
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=1) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3f34) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x080481a8 in __rel_iplt_start ()
+#14 0x00000001 in ?? ()
+#15 0x080ea540 in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28955353412
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 14, enqueue_task_fair (rq=0xc7cddf40, p=0xc74f9bc0, flags=5) at kernel/sched/fair.c:4152
+4152	{
+
+Breakpoint 14, enqueue_task_fair (rq=0xc7cddf40, p=0xc74f9bc0, flags=5) at kernel/sched/fair.c:4152
+4152	{
+[ENQUEUE] PID:7 Name:rcu_sched
+CFS Queue Info:
+Root: PID=Cannot access memory at address 0x2b8
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28958894270
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1071545 in check_preempt_wakeup (rq=0xc7cddf40, p=0xc74f9bc0, wake_flags=<optimized out>) at kernel/sched/fair.c:5181
+#2  0xc1069f24 in check_preempt_curr (rq=0xc7cddf40, p=<optimized out>, flags=<optimized out>) at kernel/sched/core.c:1030
+#3  0xc1069f7e in ttwu_do_wakeup (rq=0xc7cddf40, p=0xc74f9bc0, wake_flags=<optimized out>) at kernel/sched/core.c:1719
+#4  0xc106a0c4 in ttwu_do_activate (rq=0xc7cddf8c, p=0xc74f9bc0, wake_flags=-942809204) at kernel/sched/core.c:1759
+#5  0xc106b1db in ttwu_queue (p=0xc74f9bc0, cpu=0) at kernel/sched/core.c:1903
+#6  0xc106b356 in try_to_wake_up (p=0xc74f9bc0, state=<optimized out>, wake_flags=<optimized out>) at kernel/sched/core.c:1998
+#7  0xc106b394 in wake_up_process (p=<optimized out>) at kernel/sched/core.c:2067
+#8  0xc109b097 in process_timeout (__data=<optimized out>) at kernel/time/timer.c:1464
+#9  0xc109b145 in call_timer_fn (timer=0xc7523ed0, fn=<optimized out>, data=<optimized out>) at kernel/time/timer.c:1178
+#10 0xc109b56f in __run_timers (base=<optimized out>) at kernel/time/timer.c:1254
+#11 run_timer_softirq (h=<optimized out>) at kernel/time/timer.c:1437
+#12 0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#13 0xc101814e in call_on_stack (func=0xc7cddf8c, stack=0xc748fea8) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=false) at kernel/sched/core.c:3169
+#5  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#6  0xc10011e3 in exit_to_usermode_loop (regs=0xc62d3fb4, cached_flags=3324896772) at arch/x86/entry/common.c:241
+#7  0xc1001896 in prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:283
+#8  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#9  0x080481a8 in __rel_iplt_start ()
+#10 0x00000001 in ?? ()
+#11 0x080ea540 in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc74f9bc0) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc74f9bc0) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:7
+#0  __switch_to (prev_p=0xc62de5c0, next_p=0xc74f9bc0) at arch/x86/kernel/process_32.c:318
+#1  0xc16d1756 in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2703
+#2  __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#3  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#4  0xc10011e3 in exit_to_usermode_loop (regs=0xc62d3fb4, cached_flags=96) at arch/x86/entry/common.c:241
+#5  0xc1001896 in prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:283
+#6  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#7  0x080481a8 in __rel_iplt_start ()
+#8  0x00000001 in ?? ()
+#9  0x080ea540 in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28956513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc7523e60) at arch/x86/kernel/apic/apic.c:913
+913	{
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc7523e60) at arch/x86/kernel/apic/apic.c:913
+913	{
+Continuing.
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28956513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+Continuing.
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28974250773
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc74f9c04, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc7523de0) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000000 in ?? ()
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28984207222
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28984207222
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=false) at kernel/sched/core.c:3169
+#4  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#5  0xc16d4354 in schedule_timeout (timeout=<optimized out>) at kernel/time/timer.c:1531
+#6  0xc1097d5a in rcu_gp_kthread (arg=<optimized out>) at kernel/rcu/tree.c:2109
+#7  0xc106206a in kthread (_create=0xc751aea0) at kernel/kthread.c:209
+#8  0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#9  0x00000000 in ?? ()
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28985030574
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc74f9bc0, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc74f9bc0, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:976
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:408
+408	{
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:408
+408	{
+[SYSCALL] NR:120
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3e64) at arch/x86/kernel/apic/apic.c:913
+913	{
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3e64) at arch/x86/kernel/apic/apic.c:913
+913	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28959513953
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28978792022
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3de4) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000282 in ?? ()
+#14 0x001e847f in ?? ()
+#15 0x00000282 in ?? ()
+#16 0xc62de604 in ?? ()
+#17 0xc1070ee5 in task_fork_fair (p=0x282) at kernel/sched/fair.c:7952
+#18 0xc106b651 in sched_fork (clone_flags=<optimized out>, p=0xc62def00) at kernel/sched/core.c:2236
+#19 0xc1048df2 in copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1429
+#20 0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#21 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#22 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#23 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#24 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#25 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#26 0x01200011 in ?? ()
+#27 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28990051068
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28990051068
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=true) at kernel/sched/core.c:3169
+#4  0xc16d1994 in preempt_schedule_common () at kernel/sched/core.c:3250
+#5  0xc16d19ba in _cond_resched () at kernel/sched/core.c:4618
+#6  0xc113ace0 in slab_pre_alloc_hook (flags=<optimized out>, s=<optimized out>) at mm/slub.c:1287
+#7  slab_alloc_node (addr=<optimized out>, node=<optimized out>, gfpflags=<optimized out>, s=<optimized out>) at mm/slub.c:2490
+#8  slab_alloc (addr=<optimized out>, gfpflags=<optimized out>, s=<optimized out>) at mm/slub.c:2572
+#9  kmem_cache_alloc (s=0xc74cfd80, gfpflags=<optimized out>) at mm/slub.c:2577
+#10 0xc1158e66 in dup_fd (oldf=0xc74e3c40, errorp=<optimized out>) at fs/file.c:297
+#11 0xc10477d2 in copy_files (clone_flags=<optimized out>, tsk=0xc62de5c0) at kernel/fork.c:1036
+#12 0xc1048e51 in copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1444
+#13 0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#14 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#15 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#16 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#17 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#18 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#19 0x01200011 in ?? ()
+#20 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =28990808577
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc74f9bc0) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc74f9bc0) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:7
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28985030574
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28985030574
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 15, dequeue_task_fair (rq=0xc7cddf40, p=0xc74f9bc0, flags=1) at kernel/sched/fair.c:4200
+4200	{
+
+Breakpoint 15, dequeue_task_fair (rq=0xc7cddf40, p=0xc74f9bc0, flags=1) at kernel/sched/fair.c:4200
+4200	{
+[DEQUEUE] PID:7 Name:rcu_sched
+CFS Queue Info:
+Leftmost: PID=976 vruntime=28990808577
+Root: PID=976 vruntime=28990808577
+[Breaked]
+Now process pid=7, comm=rcu_sched, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28985030574
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc74f9bc0, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc74f9bc0, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:976
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28990808577
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =28990808577
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3d9c) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc192c360 in ?? ()
+#14 0xc125d42b in cap_vm_enough_memory (mm=<optimized out>, pages=<optimized out>) at security/commoncap.c:1039
+#15 0xc125f885 in security_vm_enough_memory_mm (mm=0xc7cddf8c, pages=-970070524) at security/security.c:230
+#16 0xc1047c2f in dup_mmap (mm=0xc622a000, oldmm=0xc622a000) at kernel/fork.c:449
+#17 0xc104879f in dup_mm (tsk=<optimized out>) at kernel/fork.c:932
+#18 0xc10488c4 in copy_mm (clone_flags=<optimized out>, tsk=0xc62def00) at kernel/fork.c:986
+#19 0xc1048ea1 in copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1456
+#20 0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#21 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#22 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#23 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#24 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#25 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#26 0x01200011 in ?? ()
+#27 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29013352101
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3d9c) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc192c360 in ?? ()
+#14 0xc125d42b in cap_vm_enough_memory (mm=<optimized out>, pages=<optimized out>) at security/commoncap.c:1039
+#15 0xc125f885 in security_vm_enough_memory_mm (mm=0xc7cddf8c, pages=-970070524) at security/security.c:230
+#16 0xc1047c2f in dup_mmap (mm=0xc622a000, oldmm=0xc622a000) at kernel/fork.c:449
+#17 0xc104879f in dup_mm (tsk=<optimized out>) at kernel/fork.c:932
+#18 0xc10488c4 in copy_mm (clone_flags=<optimized out>, tsk=0xc62def00) at kernel/fork.c:986
+#19 0xc1048ea1 in copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1456
+#20 0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#21 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#22 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#23 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#24 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#25 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#26 0x01200011 in ?? ()
+#27 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29024814226
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29024814226
+Running processes: 1
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1075650 in enqueue_entity (cfs_rq=0xc7cddf8c, se=0xc62def44, flags=<optimized out>) at kernel/sched/fair.c:3027
+#2  0xc1076015 in enqueue_task_fair (rq=<optimized out>, p=<optimized out>, flags=<optimized out>) at kernel/sched/fair.c:4160
+#3  0xc1069e19 in enqueue_task (flags=<optimized out>, p=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:835
+#4  activate_task (rq=0xc7cddf40, p=0x6, flags=<optimized out>) at kernel/sched/core.c:851
+#5  0xc106bea6 in wake_up_new_task (p=0xc62def00) at kernel/sched/core.c:2390
+#6  0xc1049852 in _do_fork (clone_flags=<optimized out>, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1755
+#7  0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#8  SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#9  0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#10 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#11 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#12 0x01200011 in ?? ()
+#13 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29025505582
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+
+Breakpoint 16, syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29025505582
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62d3fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62d3fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29025505582
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3d98) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29046587398
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3d98) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29049946287
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29053322110
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29053322110
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29053322110
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=false) at kernel/sched/core.c:3169
+#5  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#6  0xc10011e3 in exit_to_usermode_loop (regs=0xc62d3fb4, cached_flags=3324896772) at arch/x86/entry/common.c:241
+#7  0xc1001896 in prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:283
+#8  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#9  0x01200011 in ?? ()
+#10 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:977
+#0  __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+#1  0xc16d4f80 in __kprobes_text_start ()
+#2  0x01200011 in ?? ()
+#3  0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29026814225
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29026814225
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, syscall_return_slowpath (regs=0xc62effb4) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+
+Breakpoint 16, syscall_return_slowpath (regs=0xc62effb4) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29026814225
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29026814225
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efde4) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7d1c2e0 in ?? ()
+#14 0xc112316c in do_read_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, pmd=0xc62e3b7c, pgoff=0, flags=84, orig_pte=...) at mm/memory.c:2973
+#15 0xc112359c in do_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, page_table=0xc62e6ffc, pmd=0xc62e3b7c, flags=84, orig_pte=...) at mm/memory.c:3126
+#16 0xc1123665 in handle_pte_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, pte=0xc62e6ffc, pmd=0xc62e3b7c, flags=84) at mm/memory.c:3295
+#17 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, flags=84) at mm/memory.c:3423
+#18 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126420, address=3087006677, flags=84) at mm/memory.c:3452
+#19 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#20 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#21 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#22 0x01200011 in ?? ()
+#23 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29041413088
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efde4) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7d1c2e0 in ?? ()
+#14 0xc112316c in do_read_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, pmd=0xc62e3b7c, pgoff=0, flags=84, orig_pte=...) at mm/memory.c:2973
+#15 0xc112359c in do_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, page_table=0xc62e6ffc, pmd=0xc62e3b7c, flags=84, orig_pte=...) at mm/memory.c:3126
+#16 0xc1123665 in handle_pte_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, pte=0xc62e6ffc, pmd=0xc62e3b7c, flags=84) at mm/memory.c:3295
+#17 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126420, address=3087006677, flags=84) at mm/memory.c:3423
+#18 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126420, address=3087006677, flags=84) at mm/memory.c:3452
+#19 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#20 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#21 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#22 0x01200011 in ?? ()
+#23 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29045193908
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29049022174
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29049022174
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29049022174
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29049865921
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29049865921
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29049865921
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29049865921
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efde8) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7d207e0 in ?? ()
+#14 0xc1121bfe in wp_page_copy (mm=<optimized out>, vma=<optimized out>, address=<optimized out>, page_table=0xc62e53b0, pmd=0xc62e3080, orig_pte=..., old_page=0xc7d207e0) at mm/memory.c:2149
+#15 0xc1122a18 in do_wp_page (mm=<optimized out>, vma=0xc0126b58, address=135184800, page_table=0xc62e53b0, pmd=0xc62e3080, ptl=0xc6229540, orig_pte=...) at mm/memory.c:2354
+#16 0xc11236f1 in handle_pte_fault (mm=<optimized out>, vma=0xc0126b58, address=135184800, pte=0xc62e53b0, pmd=0xc62e3080, flags=85) at mm/memory.c:3311
+#17 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126b58, address=135184800, flags=85) at mm/memory.c:3423
+#18 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126b58, address=135184800, flags=85) at mm/memory.c:3452
+#19 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#20 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#21 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#22 0x01200011 in ?? ()
+#23 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29065368277
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efde8) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7d207e0 in ?? ()
+#14 0xc1121bfe in wp_page_copy (mm=<optimized out>, vma=<optimized out>, address=<optimized out>, page_table=0xc62e53b0, pmd=0xc62e3080, orig_pte=..., old_page=0xc7d207e0) at mm/memory.c:2149
+#15 0xc1122a18 in do_wp_page (mm=<optimized out>, vma=0xc0126b58, address=135184800, page_table=0xc62e53b0, pmd=0xc62e3080, ptl=0xc6229540, orig_pte=...) at mm/memory.c:2354
+#16 0xc11236f1 in handle_pte_fault (mm=<optimized out>, vma=0xc0126b58, address=135184800, pte=0xc62e53b0, pmd=0xc62e3080, flags=85) at mm/memory.c:3311
+#17 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126b58, address=135184800, flags=85) at mm/memory.c:3423
+#18 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126b58, address=135184800, flags=85) at mm/memory.c:3452
+#19 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#20 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#21 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#22 0x01200011 in ?? ()
+#23 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29069002632
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29072779019
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29072779019
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29072779019
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=false) at kernel/sched/core.c:3169
+#5  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#6  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=3324899140) at arch/x86/entry/common.c:241
+#7  0xc1001896 in prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:283
+#8  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#9  0x01200011 in ?? ()
+#10 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:976
+#0  __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+#1  0xc16d1756 in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2703
+#2  __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#3  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#4  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=96) at arch/x86/entry/common.c:241
+#5  0xc1001896 in prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:283
+#6  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#7  0x01200011 in ?? ()
+#8  0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3de0) at arch/x86/kernel/apic/apic.c:913
+913	{
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3de0) at arch/x86/kernel/apic/apic.c:913
+913	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29054174043
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29071245315
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3d60) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29082752098
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29082752098
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29082752098
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=false) at kernel/sched/core.c:3169
+#4  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#5  0xc10011e3 in exit_to_usermode_loop (regs=0xc62d3fb4, cached_flags=3324896704) at arch/x86/entry/common.c:241
+#6  0xc1001896 in prepare_exit_to_usermode (regs=0xc62d3fb4) at arch/x86/entry/common.c:283
+#7  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#8  0x01200011 in ?? ()
+#9  0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:977
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29073618862
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efe14) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7de3400 in ?? ()
+#14 0xc112297b in spin_unlock (lock=<optimized out>) at include/linux/spinlock.h:347
+#15 wp_page_reuse (dirty_shared=<optimized out>, page_mkwrite=<optimized out>, page=<optimized out>, orig_pte=..., ptl=<optimized out>, page_table=<optimized out>, address=<optimized out>, vma=<optimized out>, mm=<optimized out>) at mm/memory.c:2014
+#16 do_wp_page (mm=<optimized out>, vma=0xc0126b58, address=135181512, page_table=0xc62e53ac, pmd=0xc62e3080, ptl=0xc6229540, orig_pte=...) at mm/memory.c:2338
+#17 0xc11236f1 in handle_pte_fault (mm=<optimized out>, vma=0xc0126b58, address=135181512, pte=0xc62e53ac, pmd=0xc62e3080, flags=85) at mm/memory.c:3311
+#18 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126b58, address=135181512, flags=85) at mm/memory.c:3423
+#19 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126b58, address=135181512, flags=85) at mm/memory.c:3452
+#20 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#21 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#22 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#23 0x01200011 in ?? ()
+#24 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29094211726
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efe14) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7de3400 in ?? ()
+#14 0xc112297b in spin_unlock (lock=<optimized out>) at include/linux/spinlock.h:347
+#15 wp_page_reuse (dirty_shared=<optimized out>, page_mkwrite=<optimized out>, page=<optimized out>, orig_pte=..., ptl=<optimized out>, page_table=<optimized out>, address=<optimized out>, vma=<optimized out>, mm=<optimized out>) at mm/memory.c:2014
+#16 do_wp_page (mm=<optimized out>, vma=0xc0126b58, address=135181512, page_table=0xc62e53ac, pmd=0xc62e3080, ptl=0xc6229540, orig_pte=...) at mm/memory.c:2338
+#17 0xc11236f1 in handle_pte_fault (mm=<optimized out>, vma=0xc0126b58, address=135181512, pte=0xc62e53ac, pmd=0xc62e3080, flags=85) at mm/memory.c:3311
+#18 0xc1124a4b in __handle_mm_fault (mm=<optimized out>, vma=0xc0126b58, address=135181512, flags=85) at mm/memory.c:3423
+#19 0xc1124aaa in handle_mm_fault (mm=0xc622a000, vma=0xc0126b58, address=135181512, flags=85) at mm/memory.c:3452
+#20 0xc103f122 in __do_page_fault (regs=0xc62effb4, error_code=<optimized out>, address=<optimized out>) at arch/x86/mm/fault.c:1245
+#21 0xc103f26b in do_page_fault (regs=<optimized out>, error_code=<optimized out>) at arch/x86/mm/fault.c:1308
+#22 0xc16d5e26 in page_fault () at arch/x86/entry/entry_32.S:941
+#23 0x01200011 in ?? ()
+#24 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29097651176
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29100811263
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29100811263
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29100811263
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=false) at kernel/sched/core.c:3169
+#5  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#6  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=3324899140) at arch/x86/entry/common.c:241
+#7  0xc1001896 in prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:283
+#8  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#9  0x01200011 in ?? ()
+#10 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:976
+#0  __switch_to (prev_p=0xc62def00, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:318
+#1  0xc16d1756 in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2703
+#2  __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#3  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#4  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=96) at arch/x86/entry/common.c:241
+#5  0xc1001896 in prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:283
+#6  0xc16d5008 in resume_userspace () at arch/x86/entry/entry_32.S:273
+#7  0x01200011 in ?? ()
+#8  0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3f50) at arch/x86/kernel/apic/apic.c:913
+913	{
+
+Breakpoint 6, smp_apic_timer_interrupt (regs=0xc62d3f50) at arch/x86/kernel/apic/apic.c:913
+913	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29083534544
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+
+Breakpoint 17, resched_curr (rq=<optimized out>) at kernel/sched/core.c:587
+587			set_tsk_need_resched(curr);
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29100778913
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3ed0) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc62d3fb4 in ?? ()
+#14 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#15 0x01200011 in ?? ()
+#16 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29112149761
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29112149761
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=true) at kernel/sched/core.c:3169
+#4  0xc16d1994 in preempt_schedule_common () at kernel/sched/core.c:3250
+#5  0xc16d19ba in _cond_resched () at kernel/sched/core.c:4618
+#6  0xc113ace0 in slab_pre_alloc_hook (flags=<optimized out>, s=<optimized out>) at mm/slub.c:1287
+#7  slab_alloc_node (addr=<optimized out>, node=<optimized out>, gfpflags=<optimized out>, s=<optimized out>) at mm/slub.c:2490
+#8  slab_alloc (addr=<optimized out>, gfpflags=<optimized out>, s=<optimized out>) at mm/slub.c:2572
+#9  kmem_cache_alloc (s=0xc74cf000, gfpflags=<optimized out>) at mm/slub.c:2577
+#10 0xc10484e1 in kmem_cache_alloc_node (node=<optimized out>, flags=<optimized out>, s=<optimized out>) at include/linux/slab.h:332
+#11 alloc_task_struct_node (node=<optimized out>) at kernel/fork.c:146
+#12 dup_task_struct (orig=0xc62de5c0) at kernel/fork.c:346
+#13 0xc1048b35 in copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1311
+#14 0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#15 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#16 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#17 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#18 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#19 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#20 0x01200011 in ?? ()
+#21 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29112990917
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:977
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=160) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+
+Breakpoint 11, do_page_fault (regs=0xc62effb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Remote connection closed
+01673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+
+Breakpoint 16, prepare_exit_to_usermode (regs=0xc62effb4) at arch/x86/entry/common.c:271
+271	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:408
+408	{
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:408
+408	{
+[SYSCALL] NR:4
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc114771b in do_execve at fs/exec.c:1643
+2       breakpoint     keep y   0xc16d1192 in __schedule at kernel/sched/core.c:3104
+	breakpoint already hit 10 times
+3       breakpoint     keep y   0xc16d177b in __schedule at kernel/sched/core.c:3188
+	breakpoint already hit 9 times
+4       breakpoint     keep y   0xc101564a in __switch_to at arch/x86/kernel/process_32.c:243
+	breakpoint already hit 9 times
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        continue
+5       breakpoint     keep y   0xc1015b24 in __switch_to at arch/x86/kernel/process_32.c:318
+	breakpoint already hit 9 times
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        bt
+        continue
+6       breakpoint     keep y   0xc1034cfe in smp_apic_timer_interrupt at arch/x86/kernel/apic/apic.c:913
+	breakpoint already hit 10 times
+7       breakpoint     keep y   0xc1017a95 in do_IRQ at arch/x86/kernel/irq.c:215
+	breakpoint already hit 1 time
+8       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+	breakpoint already hit 25 times
+9       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+	breakpoint already hit 25 times
+10      breakpoint     keep y   0xc16d5096 arch/x86/entry/entry_32.S:362
+	breakpoint already hit 25 times
+11      breakpoint     keep y   0xc103f260 in do_page_fault at arch/x86/mm/fault.c:1295
+	breakpoint already hit 13 times
+12      breakpoint     keep y   0xc100196c in do_fast_syscall_32 at arch/x86/entry/common.c:408
+	breakpoint already hit 3 times
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+13      breakpoint     keep y   0xc1001aa9 in do_fast_syscall_32 at arch/x86/entry/common.c:486
+	breakpoint already hit 1 time
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+14      breakpoint     keep y   0xc1075feb in enqueue_task_fair at kernel/sched/fair.c:4152
+	breakpoint already hit 2 times
+        printf "[ENQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        continue
+15      breakpoint     keep y   0xc10748ba in dequeue_task_fair at kernel/sched/fair.c:4200
+	breakpoint already hit 1 time
+        printf "[DEQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        continue
+16      breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 15 times
+16.1                        y     0xc1001879 in prepare_exit_to_usermode at arch/x86/entry/common.c:271
+16.2                        y     0xc10018b7 in syscall_return_slowpath at arch/x86/entry/common.c:280
+16.3                        y     0xc100194d in do_syscall_32_irqs_on at arch/x86/entry/common.c:280
+16.4                        y     0xc1001a3c in do_fast_syscall_32 at arch/x86/entry/common.c:280
+17      breakpoint     keep y   0xc1069a97 in resched_curr at ./arch/x86/include/asm/bitops.h:75
+	breakpoint already hit 9 times
+18      breakpoint     keep y   0x08048e52 in main at abc.c:13
+	breakpoint already hit 1 time
+19      breakpoint     keep y   0xc1070ad9 in update_curr at kernel/sched/fair.c:702
+	breakpoint already hit 53 times
+        bt
+        continue
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 7, do_IRQ (regs=0xc62efdf8) at arch/x86/kernel/irq.c:215
+215	{
+
+Breakpoint 7, do_IRQ (regs=0xc62efdf8) at arch/x86/kernel/irq.c:215
+215	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29101673955
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efd78) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000286 in ?? ()
+#14 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29124305204
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62def44, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62efd78) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x00000286 in ?? ()
+#14 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29128038128
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 14, enqueue_task_fair (rq=0xc7cddf40, p=0xc61a2e40, flags=5) at kernel/sched/fair.c:4152
+4152	{
+
+Breakpoint 14, enqueue_task_fair (rq=0xc7cddf40, p=0xc61a2e40, flags=5) at kernel/sched/fair.c:4152
+4152	{
+[ENQUEUE] PID:844 Name:kworker/0:2
+CFS Queue Info:
+Root: PID=976 vruntime=29112990917
+Leftmost: PID=976 vruntime=29112990917
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29131440389
+Running processes: 2
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 7, do_IRQ (regs=0xc62efe24) at arch/x86/kernel/irq.c:215
+215	{
+
+Breakpoint 7, do_IRQ (regs=0xc62efe24) at arch/x86/kernel/irq.c:215
+215	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=false) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=false) at kernel/sched/core.c:3169
+#5  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#6  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=3324899140) at arch/x86/entry/common.c:241
+#7  0xc1001a55 in prepare_exit_to_usermode (regs=<optimized out>) at arch/x86/entry/common.c:283
+#8  syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+#9  do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:394
+#10 do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:455
+#11 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#12 0x00000002 in ?? ()
+#13 0x00000001 in ?? ()
+#14 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc61a2e40) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62def00, next_p=0xc61a2e40) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:844
+#0  __switch_to (prev_p=0xc62def00, next_p=0xc61a2e40) at arch/x86/kernel/process_32.c:318
+#1  0xc16d1756 in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2703
+#2  __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#3  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#4  0xc10011e3 in exit_to_usermode_loop (regs=0xc62effb4, cached_flags=96) at arch/x86/entry/common.c:241
+#5  0xc1001a55 in prepare_exit_to_usermode (regs=<optimized out>) at arch/x86/entry/common.c:283
+#6  syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+#7  do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:394
+#8  do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:455
+#9  0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#10 0x00000002 in ?? ()
+#11 0x00000001 in ?? ()
+#12 0x00000000 in ?? ()
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29109990917
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc61a2e84, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc007bdf4) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7cddf40 in ?? ()
+#14 0xc1069215 in finish_lock_switch (prev=<optimized out>, rq=<optimized out>) at kernel/sched/sched.h:1094
+#15 finish_task_switch (prev=0xc62def00) at kernel/sched/core.c:2577
+#16 0xc16d175d in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2706
+#17 __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#18 0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#19 0xc105e70c in worker_thread (__worker=0xc61af660) at kernel/workqueue.c:2193
+#20 0xc106206a in kthread (_create=0xc61761a0) at kernel/kthread.c:209
+#21 0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#22 0x00000000 in ?? ()
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29126401886
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc61a2e84, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc007bdf4) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0xc7cddf40 in ?? ()
+#14 0xc1069215 in finish_lock_switch (prev=<optimized out>, rq=<optimized out>) at kernel/sched/sched.h:1094
+#15 finish_task_switch (prev=0xc62def00) at kernel/sched/core.c:2577
+#16 0xc16d175d in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2706
+#17 __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#18 0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#19 0xc105e70c in worker_thread (__worker=0xc61af660) at kernel/workqueue.c:2193
+#20 0xc106206a in kthread (_create=0xc61761a0) at kernel/kthread.c:209
+#21 0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#22 0x00000000 in ?? ()
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29131315422
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29136112627
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29136112627
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=false) at kernel/sched/core.c:3169
+#4  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#5  0xc105e70c in worker_thread (__worker=0xc61af660) at kernel/workqueue.c:2193
+#6  0xc106206a in kthread (_create=0xc61761a0) at kernel/kthread.c:209
+#7  0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#8  0x00000000 in ?? ()
+[Breaked]
+Now process pid=844, comm=kworker/0:2, mm=(nil)
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29136879806
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 4, __switch_to (prev_p=0xc61a2e40, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+
+Breakpoint 4, __switch_to (prev_p=0xc61a2e40, next_p=0xc62de5c0) at arch/x86/kernel/process_32.c:243
+243	{
+[SWITCH] Next PID:976
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29112990917
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+
+Breakpoint 3, __schedule (preempt=false) at kernel/sched/core.c:3188
+3188	}
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29112990917
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+
+Breakpoint 10, restore_all_notrace () at arch/x86/entry/entry_32.S:362
+362		movl	PT_EFLAGS(%esp), %eax		# mix EFLAGS, SS and CS
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29112990917
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3e24) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x0000d552 in ?? ()
+#14 0x02f941e7 in ?? ()
+#15 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29133541226
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1076a17 in entity_tick (cfs_rq=<optimized out>, curr=0xc62de604, queued=<optimized out>) at kernel/sched/fair.c:3304
+#2  0xc1077363 in task_tick_fair (rq=<optimized out>, curr=<optimized out>, queued=0) at kernel/sched/fair.c:7898
+#3  0xc106cead in scheduler_tick () at kernel/sched/core.c:2871
+#4  0xc109cdb9 in update_process_times (user_tick=0) at kernel/time/timer.c:1425
+#5  0xc10abf0c in tick_sched_handle (ts=<optimized out>, regs=<optimized out>) at kernel/time/tick-sched.c:151
+#6  0xc10abf46 in tick_sched_timer (timer=0xc7cd78e0) at kernel/time/tick-sched.c:1070
+#7  0xc109db2b in __run_hrtimer (cpu_base=0xc7cd7600, base=<optimized out>, timer=0xc7cd78e0, now=0xc62d3e24) at kernel/time/hrtimer.c:1248
+#8  0xc109dc41 in __hrtimer_run_queues (cpu_base=<optimized out>, now=...) at kernel/time/hrtimer.c:1312
+#9  0xc109deef in hrtimer_interrupt (dev=<optimized out>) at kernel/time/hrtimer.c:1346
+#10 0xc10346f2 in local_apic_timer_interrupt () at arch/x86/kernel/apic/apic.c:901
+#11 0xc1034d2f in smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:925
+#12 0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#13 0x0000d552 in ?? ()
+#14 0x02f941e7 in ?? ()
+#15 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29138752628
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29143171836
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 2, __schedule (preempt=true) at kernel/sched/core.c:3104
+3104	{
+
+Breakpoint 2, __schedule (preempt=true) at kernel/sched/core.c:3104
+3104	{
+Continuing.
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =1
+Now process vruntime =29143171836
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1073599 in put_prev_entity (cfs_rq=0xc7cddf8c, prev=<optimized out>) at kernel/sched/fair.c:3282
+#2  0xc10786a0 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5290
+#3  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#4  __schedule (preempt=true) at kernel/sched/core.c:3169
+#5  0xc16d1994 in preempt_schedule_common () at kernel/sched/core.c:3250
+#6  0xc16d19ba in _cond_resched () at kernel/sched/core.c:4618
+#7  0xc1048da6 in threadgroup_change_begin (tsk=<optimized out>) at include/linux/sched.h:2780
+#8  copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1381
+#9  0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#10 0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#11 SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#12 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#13 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#14 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#15 0x01200011 in ?? ()
+#16 0x00000000 in ?? ()
+[Breaked]
+Now process pid=976, comm=abc, mm=0xc622a2a0
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29144002468
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+318	}
+
+Breakpoint 5, __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+318	}
+[SWITCH] Next PID:977
+#0  __switch_to (prev_p=0xc62de5c0, next_p=0xc62def00) at arch/x86/kernel/process_32.c:318
+#1  0xc16d1756 in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2703
+#2  __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#3  0xc16d1994 in preempt_schedule_common () at kernel/sched/core.c:3250
+#4  0xc16d19ba in _cond_resched () at kernel/sched/core.c:4618
+#5  0xc1048da6 in threadgroup_change_begin (tsk=<optimized out>) at include/linux/sched.h:2780
+#6  copy_process (clone_flags=18874385, stack_start=<optimized out>, stack_size=0, child_tidptr=0x80ed8a8, pid=0x0, trace=0, tls=0) at kernel/fork.c:1381
+#7  0xc1049779 in _do_fork (clone_flags=18874385, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=0x80ed8a8, tls=0) at kernel/fork.c:1731
+#8  0xc1049a0b in SYSC_clone (child_tidptr=<optimized out>, tls=<optimized out>, parent_tidptr=<optimized out>, newsp=<optimized out>, clone_flags=<optimized out>) at kernel/fork.c:1840
+#9  SyS_clone (clone_flags=18874385, newsp=0, parent_tidptr=0, tls=0, child_tidptr=135190696) at kernel/fork.c:1818
+#10 0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#11 do_fast_syscall_32 (regs=0xc62d3fb4) at arch/x86/entry/common.c:455
+#12 0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#13 0x01200011 in ?? ()
+#14 0x00000000 in ?? ()
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 13, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:486
+486	}
+
+Breakpoint 13, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:486
+486	}
+[SYSCALL] NR:4
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1070d89 in yield_task_fair (rq=0xc7cddf40) at kernel/sched/fair.c:5382
+#2  0xc106d54e in sys_sched_yield () at kernel/sched/core.c:4599
+#3  0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#4  do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:455
+#5  0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#6  0x080481a8 in __rel_iplt_start ()
+#7  0xbffffdcc in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+
+Breakpoint 19, update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+702	{
+#0  update_curr (cfs_rq=0xc7cddf8c) at kernel/sched/fair.c:702
+#1  0xc1078609 in pick_next_task_fair (rq=<optimized out>, prev=<optimized out>) at kernel/sched/fair.c:5248
+#2  0xc16d1320 in pick_next_task (prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:3040
+#3  __schedule (preempt=false) at kernel/sched/core.c:3169
+#4  0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#5  0xc106d561 in sys_sched_yield () at kernel/sched/core.c:4610
+#6  0xc1001a1f in do_syscall_32_irqs_on (regs=<optimized out>) at arch/x86/entry/common.c:388
+#7  do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:455
+#8  0xc16d504d in entry_SYSENTER_32 () at arch/x86/entry/entry_32.S:310
+#9  0x080481a8 in __rel_iplt_start ()
+#10 0xbffffdcc in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 16, syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+
+Breakpoint 16, syscall_return_slowpath (regs=<optimized out>) at arch/x86/entry/common.c:345
+345		prepare_exit_to_usermode(regs);
+Continuing.
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:408
+408	{
+
+Breakpoint 12, do_fast_syscall_32 (regs=0xc62effb4) at arch/x86/entry/common.c:408
+408	{
+[SYSCALL] NR:4
+[Breaked]
+Now process pid=977, comm=abc, mm=0xc622a000
+Now process TIF_NEED_RESCHED =0
+Now process vruntime =29132298123
+Running processes: 3
+[KERNEL] Breakpoint
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+
+Breakpoint 8, ret_from_exception () at arch/x86/entry/entry_32.S:254
+254		GET_THREAD_INFO(%ebp)
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc114771b in do_execve at fs/exec.c:1643
+2       breakpoint     keep y   0xc16d1192 in __schedule at kernel/sched/core.c:3104
+	breakpoint already hit 14 times
+3       breakpoint     keep y   0xc16d177b in __schedule at kernel/sched/core.c:3188
+	breakpoint already hit 13 times
+4       breakpoint     keep y   0xc101564a in __switch_to at arch/x86/kernel/process_32.c:243
+	breakpoint already hit 12 times
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        continue
+5       breakpoint     keep y   0xc1015b24 in __switch_to at arch/x86/kernel/process_32.c:318
+	breakpoint already hit 12 times
+        printf "[SWITCH] Next PID:%d\n", next_p->pid
+        bt
+        continue
+6       breakpoint     keep y   0xc1034cfe in smp_apic_timer_interrupt at arch/x86/kernel/apic/apic.c:913
+	breakpoint already hit 13 times
+7       breakpoint     keep y   0xc1017a95 in do_IRQ at arch/x86/kernel/irq.c:215
+	breakpoint already hit 4 times
+8       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+	breakpoint already hit 32 times
+9       breakpoint     keep y   0xc16d4fe0 arch/x86/entry/entry_32.S:254
+	breakpoint already hit 32 times
+10      breakpoint     keep y   0xc16d5096 arch/x86/entry/entry_32.S:362
+	breakpoint already hit 32 times
+11      breakpoint     keep y   0xc103f260 in do_page_fault at arch/x86/mm/fault.c:1295
+	breakpoint already hit 13 times
+12      breakpoint     keep y   0xc100196c in do_fast_syscall_32 at arch/x86/entry/common.c:408
+	breakpoint already hit 5 times
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+13      breakpoint     keep y   0xc1001aa9 in do_fast_syscall_32 at arch/x86/entry/common.c:486
+	breakpoint already hit 3 times
+        printf "[SYSCALL] NR:%d\n", (int)((struct pt_regs*)regs)->orig_ax
+        continue
+14      breakpoint     keep y   0xc1075feb in enqueue_task_fair at kernel/sched/fair.c:4152
+	breakpoint already hit 3 times
+        printf "[ENQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        continue
+15      breakpoint     keep y   0xc10748ba in dequeue_task_fair at kernel/sched/fair.c:4200
+	breakpoint already hit 1 time
+        printf "[DEQUEUE] PID:%d Name:%s\n", p->pid, p->comm
+        printf "CFS Queue Info:\n"
+        printf "Leftmost: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.rb_leftmost - 0x4c))->se.vruntime
+        printf "Root: PID=%d vruntime=%lu\n",          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->pid,          ((struct task_struct*)((void*)$lx_per_cpu("runqueues").cfs.tasks_timeline.rb_node - 0x4c))->se.vruntime
+        continue
+16      breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 17 times
+16.1                        y     0xc1001879 in prepare_exit_to_usermode at arch/x86/entry/common.c:271
+16.2                        y     0xc10018b7 in syscall_return_slowpath at arch/x86/entry/common.c:280
+16.3                        y     0xc100194d in do_syscall_32_irqs_on at arch/x86/entry/common.c:280
+16.4                        y     0xc1001a3c in do_fast_syscall_32 at arch/x86/entry/common.c:280
+17      breakpoint     keep y   0xc1069a97 in resched_curr at ./arch/x86/include/asm/bitops.h:75
+	breakpoint already hit 12 times
+18      breakpoint     keep y   0x08048e52 in main at abc.c:13
+	breakpoint already hit 1 time
+19      breakpoint     keep y   0xc1070ad9 in update_curr at kernel/sched/fair.c:702
+	breakpoint already hit 71 times
+        bt
+        continue
