@@ -1,0 +1,1477 @@
+Last login: Sun May 11 14:26:14 2025 from 111.23.130.11
+S24023156@ali4nudtOS:~$ cd /home/aos/lab
+S24023156@ali4nudtOS:/home/aos/lab$ ./mygdb
+GNU gdb (Ubuntu 12.1-0ubuntu1~22.04.2) 12.1
+Copyright (C) 2022 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from vmlinux...
+GDBTARGET = localhost:26027
+0x0000fff0 in ?? ()
+add symbol table from file "/home/aos/lab/busybox/busybox_unstripped" at
+        .text_addr = 0x8048400
+Breakpoint 1 at 0xc199d7da: file init/main.c, line 498.
+Breakpoint 2 at 0x81e184b: file coreutils/ls.c, line 1048.
+(gdb) source /home/aos/lab/gdbcmds/demo-3-4.gdb
+add symbol table from file "/home/aos/lab/abc/abc" at
+        .text_addr = 0x80482b0
+Breakpoint 3 at 0x8048e66: file abc.c, line 16.
+Breakpoint 4 at 0xc113bf38: file fs/exec.c, line 1643.
+Breakpoint 5 at 0xc103d864: file arch/x86/mm/fault.c, line 1067.
+Breakpoint 6 at 0xc103dd06: file arch/x86/mm/fault.c, line 1295.
+Breakpoint 7 at 0xc1116d18: file mm/memory.c, line 2666.
+Breakpoint 8 at 0xc11184cf: file mm/memory.c, line 2942.
+Breakpoint 9 at 0xc1118691: file mm/memory.c, line 2982.
+Breakpoint 10 at 0xc111887e: file mm/memory.c, line 3048.
+Breakpoint 11 at 0xc1117f26: file mm/memory.c, line 2449.
+Breakpoint 12 at 0xc1117c71: file mm/memory.c, line 2289.
+(gdb) b _do_fork
+Breakpoint 13 at 0xc1047cdb: file kernel/fork.c, line 1708.
+(gdb) b fork.c:1770
+Breakpoint 14 at 0xc1047f22: file kernel/fork.c, line 1770.
+(gdb)
+Note: breakpoint 14 also set at pc 0xc1047f22.
+Breakpoint 15 at 0xc1047f22: file kernel/fork.c, line 1770.
+(gdb) diis
+Undefined command: "diis".  Try "help".
+(gdb) disable
+(gdb) enable 3 4
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc753a180, __argv=0xbffffcdc, __envp=0x828fa00) at f        s/exec.c:1643
+1643    {
+1: $lx_current().pid = 957
+2: $lx_current().comm = "init\000er/0\000\000\000\000\000\000"
+filename: /etc/init.d/rcS
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc753a180, __argv=0x828fcd0, __envp=0x828fcec) at fs        /exec.c:1643
+1643    {
+1: $lx_current().pid = 958
+2: $lx_current().comm = "rcS\000\000er/0\000\000\000\000\000\000"
+filename: /bin/mount
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc753a180, __argv=0x828fcd0, __envp=0x828fcec) at fs        /exec.c:1643
+1643    {
+1: $lx_current().pid = 959
+2: $lx_current().comm = "rcS\000\000er/0\000\000\000\000\000\000"
+filename: /bin/mount
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc753a180, __argv=0x828fc68, __envp=0x828fc74) at fs        /exec.c:1643
+1643    {
+1: $lx_current().pid = 960
+2: $lx_current().comm = "rcS\000\000er/0\000\000\000\000\000\000"
+filename: /sbin/mdev
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc75390c0, __argv=0xbffffcf0, __envp=0x828fa00) at f        s/exec.c:1643
+1643    {
+1: $lx_current().pid = 962
+2: $lx_current().comm = "init\000er/0\000\000\000\000\000\000"
+filename: /bin/sh
+(gdb) c
+Continuing.
+
+Breakpoint 4, do_execve (filename=0xc75390c0, __argv=0x828fc40, __envp=0x828fc4c) at fs        /exec.c:1643
+1643    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "sh\000t\000er/0\000\000\000\000\000\000"
+filename: ./abc
+(gdb) finish
+Run till exit from #0  do_execve (filename=0xc75390c0, __argv=0x828fc40, __envp=0x828fc4c)
+    at fs/exec.c:1643
+SyS_execve (filename=136903724, argv=136903744, envp=136903756) at fs/exec.c:1722
+1722    SYSCALL_DEFINE3(execve,
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+Value returned is $1 = 0
+(gdb) enable 5 6 13 14
+(gdb) info b
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep n   0xc199d7da in start_kernel at init/main.c:498
+2       breakpoint     keep n   0x081e184b in ls_main at coreutils/ls.c:1048
+3       breakpoint     keep y   0x08048e66 in main at abc.c:16
+4       breakpoint     keep y   0xc113bf38 in do_execve at fs/exec.c:1643
+        stop only if ($lx_current().mm != 0)
+        breakpoint already hit 6 times
+        printf "filename: %s\n", filename->name
+5       breakpoint     keep y   0xc103d864 in __do_page_fault at arch/x86/mm/fault.c:1067
+        printf "address: %x\n", address
+6       breakpoint     keep y   0xc103dd06 in do_page_fault at arch/x86/mm/fault.c:1295
+7       breakpoint     keep n   0xc1116d18 in do_anonymous_page at mm/memory.c:2666
+8       breakpoint     keep n   0xc11184cf in do_read_fault at mm/memory.c:2942
+9       breakpoint     keep n   0xc1118691 in do_cow_fault at mm/memory.c:2982
+10      breakpoint     keep n   0xc111887e in do_shared_fault at mm/memory.c:3048
+11      breakpoint     keep n   0xc1117f26 in do_swap_page at mm/memory.c:2449
+12      breakpoint     keep n   0xc1117c71 in do_wp_page at mm/memory.c:2289
+13      breakpoint     keep y   0xc1047cdb in _do_fork at kernel/fork.c:1708
+14      breakpoint     keep y   0xc1047f22 in _do_fork at kernel/fork.c:1770
+15      breakpoint     keep n   0xc1047f22 in _do_fork at kernel/fork.c:1770
+(gdb) delete 15
+(gdb) p/x *$lx_current().mm->mmap
+$2 = {vm_start = 0x8048000, vm_end = 0x80e9000, vm_next = 0xc6202000, vm_prev = 0x0, vm_rb = {
+    __rb_parent_color = 0xc6202011, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_gap = 0x8048000, vm_mm = 0xc61c02a0, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x875, shared = {rb = {__rb_parent_color = 0x1, rb_right = 0xc620202c,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc6202eac,
+    prev = 0xc6202eac}, anon_vma = 0x0, vm_ops = 0xc16b89e0, vm_pgoff = 0x0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x $lx_current().mm->mmap
+$3 = 0xc6202e70
+(gdb) p/x *$lx_current().mm->mmap->vm_next
+$4 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc6202210, vm_prev = 0xc6202e70,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc6202118, rb_left = 0xc6202e80},
+  rb_subtree_gap = 0xaff0e000, vm_mm = 0xc61c02a0, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc6202e9c, rb_right = 0x0,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5b68,
+    prev = 0xc61b5b68}, anon_vma = 0xc01230e8, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x $lx_current().mm->mmap->vm_next
+$5 = 0xc6202000
+(gdb) p $lx_current().mm->pgd
+$6 = (pgd_t *) 0xc6200000
+(gdb) x/wx 0xc0127000+0x80
+0xc0127080:     0x7be8bbf7
+(gdb) x/wx 0xc6200000+0x80
+0xc6200080:     0x06270067
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x00000000      0x00000000      0x00000000      0x01aec067
+(gdb) p/x mem_map[0x1aec]
+$7 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x *(struct anon_vma *)0xc01230e8
+$8 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc01230f0,
+      prev = 0xc01230f0}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x1}, degree = 0x2,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc61b5b70}}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5b60
+$9 = {vma = 0xc6202000, anon_vma = 0xc01230e8, same_vma = {next = 0xc620203c,
+    prev = 0xc620203c}, rb = {__rb_parent_color = 0x1, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x $lx_current().mm->mmap->vm_next->vm_file->f_mapping
+$10 = 0xc689f26c
+(gdb)  set logging file gdb_debug.log
+(gdb) set logging on
+Warning: 'set logging on', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled on'.
+
+set logging: Permission denied.
+(gdb) p/x *$lx_current().mm->mmap->vm_next->vm_file->f_mapping
+$11 = {host = 0xc689f180, page_tree = {height = 0x2, gfp_mask = 0x2080020,
+    rnode = 0xc68563c1}, tree_lock = {{rlock = {raw_lock = {val = {counter = 0x0}},
+        magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}}}, i_mmap_writable = {
+    counter = 0x0}, i_mmap = {rb_node = 0xc6202e9c}, i_mmap_rwsem = {count = 0x0,
+    wait_list = {next = 0xc689f298, prev = 0xc689f298}, wait_lock = {raw_lock = {val = {
+          counter = 0x0}}, magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff},
+    osq = {tail = {counter = 0x0}}, owner = 0x0}, nrpages = 0xb6, nrshadows = 0x0,
+  writeback_index = 0x0, a_ops = 0xc16c2ae0, flags = 0x224200c2, private_lock = {{rlock = {
+        raw_lock = {val = {counter = 0x0}}, magic = 0xdead4ead, owner_cpu = 0xffffffff,
+        owner = 0xffffffff}}}, private_list = {next = 0xc689f2dc, prev = 0xc689f2dc},
+  private_data = 0x0}
+(gdb) p/x ((struct radix_tree_node *) 0xc68563c0)->slots[2]
+$12 = 0xc68565a0
+(gdb) p/x *((struct radix_tree_node *)(((struct radix_tree_node *) 0xc68563c0)->slots[2]))
+$13 = {path = 0x101, count = 0x36, {{parent = 0xc68563c0, private_data = 0x0},
+    callback_head = {next = 0xc68563c0, func = 0x0}}, private_list = {next = 0xc68565b0,
+    prev = 0xc68565b0}, slots = {0xc7dff2c0, 0xc7dff2e0, 0xc7dff300, 0xc7dff320, 0xc7dff340,
+    0xc7dff360, 0xc7dff380, 0xc7dff3a0, 0xc7dff3c0, 0xc7dff3e0, 0xc7dff400, 0xc7dff420,
+    0xc7dff440, 0xc7dff460, 0xc7dff480, 0xc7dff4a0, 0xc7dff4c0, 0xc7dff4e0, 0xc7dff500,
+    0xc7dff520, 0xc7dff540, 0xc7dff560, 0xc7dff580, 0xc7dff5a0, 0xc7dff5c0, 0xc7dff5e0,
+    0xc7dff600, 0xc7dff620, 0xc7dff640, 0xc7dff660, 0xc7dff680, 0xc7dff6a0, 0xc7dff6c0,
+    0xc7dff6e0, 0xc7dff700, 0xc7dff720, 0xc7dff740, 0xc7dff760, 0xc7dff780, 0xc7dff7a0,
+    0xc7dff7c0, 0xc7dff7e0, 0xc7dff800, 0xc7dff820, 0xc7dff840, 0xc7dff860, 0xc7dff880,
+    0xc7dff8a0, 0xc7dff8c0, 0xc7dff8e0, 0xc7dff900, 0xc7dff920, 0xc7dff940, 0xc7dff960, 0x0,
+    0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}, tags = {{0x0, 0x0}, {0x0, 0x0}, {0x0, 0x0}}}
+(gdb) p/x ((struct radix_tree_node *)(((struct radix_tree_node *) 0xc68563c0)->slots[2]))->slots[32]
+$14 = 0xc7dff6c0
+(gdb) p/x (struct page *)0xc7dff6c0-mem_map
+$15 = 0x6f36
+(gdb) x/s 0xc6f38000
+0xc6f38000:     "this is not a test\n"
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134515978) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8048d0a
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=135189740) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ed4ec
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x00000000      0x00000000      0x00000000      0x01aec067
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=135176132) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80e9fc4
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x00000000      0x00000000      0x01aec067
+(gdb) p/x mem_map[0x7be2]
+$16 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa0,
+      freelist = 0xa0}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134672832) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 806f1c0
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x00000000      0x00000000      0x01aec067
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=135192908) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ee14c
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x00000000      0x00000000      0x01aec067
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=135011764) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80c1db4
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134676528) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8070030
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134816256) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8092200
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=3087006636) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: b7fffbac
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=135176256) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ea040
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x06f37025      0x06f38025      0x01aec067
+(gdb) p/x mem_map[0x6f37]
+$17 = {flags = 0x4000003c, {mapping = 0xc689f26c, s_mem = 0xc689f26c}, {{index = 0xa1,
+      freelist = 0xa1}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0xc7dff6d4, prev = 0xc7dff714}, {next = 0xc7dff6d4,
+      pages = 0xf714, pobjects = 0xc7df}, callback_head = {next = 0xc7dff6d4,
+      func = 0xc7dff714}, {compound_head = 0xc7dff6d4, compound_dtor = 0xf714,
+      compound_order = 0xc7df}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x6f38]
+$18 = {flags = 0x4000003c, {mapping = 0xc689f26c, s_mem = 0xc689f26c}, {{index = 0xa2,
+      freelist = 0xa2}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0xc7dff6f4, prev = 0xc7dff734}, {next = 0xc7dff6f4,
+      pages = 0xf734, pobjects = 0xc7df}, callback_head = {next = 0xc7dff6f4,
+      func = 0xc7dff734}, {compound_head = 0xc7dff6f4, compound_dtor = 0xf734,
+      compound_order = 0xc7df}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134590800) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 805b150
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135176256) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ea040
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x07d1e067      0x06f38025      0x01aec067
+(gdb) p/x mem_map[0x7d1e]
+$19 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa1,
+      freelist = 0xa1}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134958816) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80b4ee0
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=4, address=134795376) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 808d070
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=135198744) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ef818
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x07d1e067      0x06f38025      0x01aec067
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=3221220716) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: bfffed6c
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121e94, error_code=0) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121e94, error_code=0, address=135083406) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80d358e
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=6) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=6, address=135200788) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80f0014
+(gdb) c
+Continuing.
+
+Breakpoint 3, main () at abc.c:16
+16      void main(){
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x07d1e067      0x06f38025      0x01aec067
+
+
+// 时间节点： main函数到达
+
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135180288) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80eb000
+(gdb) c
+Continuing.
+
+Breakpoint 13, _do_fork (clone_flags=18874385, stack_start=0, stack_size=0, parent_tidptr=0x0, child_tidptr=0x80ef8a8 <__offtime+40>, tls=0) at kernel/fork.c:1708
+1708    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2067      0x07d1e067      0x07ce7067      0x01aec067
+(gdb) p/x mem_map[0x7ce7]
+$20 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa2,
+      freelist = 0xa2}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 14, _do_fork (clone_flags=0, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=<optimized out>, tls=<optimized out>) at kernel/fork.c:1770
+1770            return nr;
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) p/x $lx_task_by_pid(974).mm->mmap->vm_next
+$21 = 0xc625b840
+(gdb) p/x *$lx_task_by_pid(974).mm->mmap->vm_next
+$22 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc625bb58, vm_prev = 0xc6202420,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc625b640, rb_left = 0xc6202430},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c0000, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc620202c, rb_right = 0x0,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5348,
+    prev = 0xc61b5ea8}, anon_vma = 0xc0123e80, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *(struct anon_vma *)0xc0123e80
+$23 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc0123e88,
+      prev = 0xc0123e88}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x1}, degree = 0x1,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc61b5350}}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5340
+$24 = {vma = 0xc625b840, anon_vma = 0xc0123e80, same_vma = {next = 0xc61b5ea8,
+    prev = 0xc625b87c}, rb = {__rb_parent_color = 0x1, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x *$lx_current().mm->mmap->vm_next
+$25 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc6202210, vm_prev = 0xc6202e70,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc6202118, rb_left = 0xc6202e80},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c02a0, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc620244d, rb_right = 0xc625b86c,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5b68,
+    prev = 0xc61b5b68}, anon_vma = 0xc01230e8, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *(struct anon_vma *)0xc01230e8
+$26 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc01230f0,
+      prev = 0xc01230f0}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x2}, degree = 0x3,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc61b5b70}}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5b60
+$27 = {vma = 0xc6202000, anon_vma = 0xc01230e8, same_vma = {next = 0xc620203c,
+    prev = 0xc620203c}, rb = {__rb_parent_color = 0x1, rb_right = 0xc61b5eb0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5ea0
+$28 = {vma = 0xc625b840, anon_vma = 0xc01230e8, same_vma = {next = 0xc625b87c,
+    prev = 0xc61b5348}, rb = {__rb_parent_color = 0xc61b5b70, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p $lx_task_by_pid(974).mm->pgd
+$29 = (pgd_t *) 0xc6271000
+(gdb) x/wx 0xc6271000+0x80
+0xc6271080:     0x06274067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273f64, error_code=3) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273f64, error_code=3, address=135198888) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ef8a8
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135198892) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ef8ac
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=3087006645) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: b7fffbb5
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=3221224828) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: bffffd7c
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=134661296) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 806c4b0
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135189600) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ed460
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=7, address=135192896) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ee140
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135185560) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ec498
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x01aec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=7, address=3221224828) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: bffffd7c
+(gdb) c
+Continuing.
+
+
+// 时间节点： 第二个进程创建完成，接下来_do_fork第二次调用创建第三个进程
+
+Breakpoint 13, _do_fork (clone_flags=18874385, stack_start=0, stack_size=0, parent_tidptr=0x0, child_tidptr=0x80ef8a8 <__offtime+40>, tls=0) at kernel/fork.c:1708
+1708    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec045
+(gdb) p/x mem_map[0x7cec]
+$30 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x mem_map[0x1aec]
+$31 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=134564864) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8054c00
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec065
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=7, address=135189608) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ed468
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec065
+(gdb) p/x mem_map[0x1aec]
+$32 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7cec]
+$33 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=7, address=135186808) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ec978
+(gdb) c
+Continuing.
+
+Breakpoint 14, _do_fork (clone_flags=0, stack_start=<optimized out>, stack_size=<optimized out>, parent_tidptr=0x0, child_tidptr=<optimized out>, tls=<optimized out>) at kernel/fork.c:1770
+1770            return nr;
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec065
+(gdb) p/x mem_map[0x7cec]
+$34 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x1, {{_mapcount = {counter = 0x1}, {inuse = 0x1,
+            objects = 0x0, frozen = 0x0}, units = 0x1}, _count = {counter = 0x3}},
+      active = 0x1}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x mem_map[0x1aec]
+$35 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x $lx_task_by_pid(975).mm->mmap->vm_next
+$36 = 0xc625b528
+(gdb) p/x *$lx_task_by_pid(975).mm->mmap->vm_next
+$37 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc627a000, vm_prev = 0xc625ba50,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc627ae80, rb_left = 0xc625ba60},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c1a40, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc620244d, rb_right = 0xc625b86c,
+      rb_left = 0xc620202c}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc624a688,
+    prev = 0xc624a9c8}, anon_vma = 0xc0123ae0, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *(struct anon_vma *)0xc0123ae0
+$38 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc0123ae8,
+      prev = 0xc0123ae8}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x1}, degree = 0x1,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc624a690}}
+(gdb) p/x *(struct anon_vma_chain *)0xc624a680
+$39 = {vma = 0xc625b528, anon_vma = 0xc0123ae0, same_vma = {next = 0xc624a9c8,
+    prev = 0xc625b564}, rb = {__rb_parent_color = 0x1, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x *$lx_current().mm->mmap->vm_next
+$40 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc6202210, vm_prev = 0xc6202e70,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc6202118, rb_left = 0xc6202e80},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c02a0, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc625b554, rb_right = 0x0,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5b68,
+    prev = 0xc61b5b68}, anon_vma = 0xc01230e8, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *(struct anon_vma *)0xc01230e8
+$41 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc01230f0,
+      prev = 0xc01230f0}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x3}, degree = 0x4,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc61b5eb0}}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5ea0
+$42 = {vma = 0xc625b840, anon_vma = 0xc01230e8, same_vma = {next = 0xc625b87c,
+    prev = 0xc61b5348}, rb = {__rb_parent_color = 0x1, rb_right = 0xc624a9d0,
+    rb_left = 0xc61b5b70}, rb_subtree_last = 0xa3}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5b60
+$43 = {vma = 0xc6202000, anon_vma = 0xc01230e8, same_vma = {next = 0xc620203c,
+    prev = 0xc620203c}, rb = {__rb_parent_color = 0xc61b5eb0, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x *(struct anon_vma_chain *)0xc624a9c0
+$44 = {vma = 0xc625b528, anon_vma = 0xc01230e8, same_vma = {next = 0xc625b564,
+    prev = 0xc624a688}, rb = {__rb_parent_color = 0xc61b5eb0, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p/x $lx_task_by_pid(973).mm->mmap->vm_next
+$45 = 0xc6202000
+(gdb) p/x $lx_task_by_pid(974).mm->mmap->vm_next
+$46 = 0xc625b840
+(gdb) p/x $lx_task_by_pid(975).mm->mmap->vm_next
+$47 = 0xc625b528
+(gdb) p/x *$lx_task_by_pid(973).mm->mmap->vm_next
+$48 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc6202210, vm_prev = 0xc6202e70,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc6202118, rb_left = 0xc6202e80},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c02a0, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc625b554, rb_right = 0x0,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5b68,
+    prev = 0xc61b5b68}, anon_vma = 0xc01230e8, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *$lx_task_by_pid(974).mm->mmap->vm_next
+$49 = {vm_start = 0x80e9000, vm_end = 0x80ed000, vm_next = 0xc625bb58, vm_prev = 0xc6202420,
+  vm_rb = {__rb_parent_color = 0x1, rb_right = 0xc625b640, rb_left = 0xc6202430},
+  rb_subtree_gap = 0xafeec000, vm_mm = 0xc61c0000, vm_page_prot = {pgprot = 0x25},
+  vm_flags = 0x100873, shared = {rb = {__rb_parent_color = 0xc625b554, rb_right = 0x0,
+      rb_left = 0x0}, rb_subtree_last = 0xa3}, anon_vma_chain = {next = 0xc61b5348,
+    prev = 0xc61b5ea8}, anon_vma = 0xc0123e80, vm_ops = 0xc16b89e0, vm_pgoff = 0xa0,
+  vm_file = 0xc6205c00, vm_prfile = 0x0, vm_private_data = 0x0,
+  vm_userfaultfd_ctx = {<No data fields>}}
+(gdb) p/x *(struct anon_vma *)0xc0123e80
+$50 = {root = 0xc01230e8, rwsem = {count = 0x0, wait_list = {next = 0xc0123e88,
+      prev = 0xc0123e88}, wait_lock = {raw_lock = {val = {counter = 0x0}},
+      magic = 0xdead4ead, owner_cpu = 0xffffffff, owner = 0xffffffff}, osq = {tail = {
+        counter = 0x0}}, owner = 0x0}, refcount = {counter = 0x1}, degree = 0x1,
+  parent = 0xc01230e8, rb_root = {rb_node = 0xc61b5350}}
+(gdb) p/x *(struct anon_vma_chain *)0xc61b5340
+$51 = {vma = 0xc625b840, anon_vma = 0xc0123e80, same_vma = {next = 0xc61b5ea8,
+    prev = 0xc625b87c}, rb = {__rb_parent_color = 0x1, rb_right = 0x0, rb_left = 0x0},
+  rb_subtree_last = 0xa3}
+(gdb) p $lx_task_by_pid(975).mm->pgd
+$52 = (pgd_t *) 0xc6277000
+(gdb) x/wx 0xc6277000+0x80
+0xc6277080:     0x06278067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec065
+(gdb) p/x mem_map[0x1aec]
+$53 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7cec]
+$54 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x1, {{_mapcount = {counter = 0x1}, {inuse = 0x1,
+            objects = 0x0, frozen = 0x0}, units = 0x1}, _count = {counter = 0x3}},
+      active = 0x1}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627df64, error_code=3) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627df64, error_code=3, address=135198888) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ef8a8
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec065
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135198892) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ef8ac
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=134516461) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8048eed
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=3221224828) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: bffffd7c
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=3087006645) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: b7fffbb5
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=134996168) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80be0c8
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134661296) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 806c4b0
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134661296) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 806c4b0
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) p/x mem_map[0x1aec]
+$55 = {flags = 0x40040068, {mapping = 0xc0123e81, s_mem = 0xc0123e81}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e1ac94, prev = 0xc7e1ac74}, {next = 0xc7e1ac94,
+      pages = 0xac74, pobjects = 0xc7e1}, callback_head = {next = 0xc7e1ac94,
+      func = 0xc7e1ac74}, {compound_head = 0xc7e1ac94, compound_dtor = 0xac74,
+      compound_order = 0xc7e1}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7cec]
+$56 = {flags = 0x40040068, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x1, {{_mapcount = {counter = 0x1}, {inuse = 0x1,
+            objects = 0x0, frozen = 0x0}, units = 0x1}, _count = {counter = 0x2}},
+      active = 0x1}}, {lru = {next = 0xc7e1ad74, prev = 0xc1983c18}, {next = 0xc7e1ad74,
+      pages = 0x3c18, pobjects = 0xc198}, callback_head = {next = 0xc7e1ad74,
+      func = 0xc1983c18}, {compound_head = 0xc7e1ad74, compound_dtor = 0x3c18,
+      compound_order = 0xc198}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135189600) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ed460
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=7, address=135192896) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ee140
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc0121fb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc0121fb4, error_code=7, address=135185560) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 973
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ec498
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07cec065
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2045      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec045
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=7, address=3221224828) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: bffffd7c
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134564864) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8054c00
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=134899504) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80a6730
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=7, address=135189608) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ed468
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc6273fb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07bc1067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2065      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec065
+(gdb) p/x mem_map[0x1aec]
+$57 = {flags = 0x40040068, {mapping = 0xc0123e81, s_mem = 0xc0123e81}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e1ac94, prev = 0xc7e1ac74}, {next = 0xc7e1ac94,
+      pages = 0xac74, pobjects = 0xc7e1}, callback_head = {next = 0xc7e1ac94,
+      func = 0xc7e1ac74}, {compound_head = 0xc7e1ac94, compound_dtor = 0xac74,
+      compound_order = 0xc7e1}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7cec]
+$58 = {flags = 0x40040068, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e1ad74, prev = 0xc1983c18}, {next = 0xc7e1ad74,
+      pages = 0x3c18, pobjects = 0xc198}, callback_head = {next = 0xc7e1ad74,
+      func = 0xc1983c18}, {compound_head = 0xc7e1ad74, compound_dtor = 0x3c18,
+      compound_order = 0xc198}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7bc1]
+$59 = {flags = 0x40040048, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x2}},
+      active = 0x0}}, {lru = {next = 0x100, prev = 0x200}, {next = 0x100, pages = 0x200,
+      pobjects = 0x0}, callback_head = {next = 0x100, func = 0x200}, {compound_head = 0x100,
+      compound_dtor = 0x200, compound_order = 0x0}}, {private = 0x0, ptl = 0x0,
+    slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc6273fb4, error_code=4, address=135110756) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 974
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80da064
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=7) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=7, address=135186808) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80ec978
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) x/4wx 0xc6270000+0x3a4
+0xc62703a4:     0x07be2065      0x07d1e065      0x07ce7065      0x07bc1067
+(gdb) x/4wx 0xc6274000+0x3a4
+0xc62743a4:     0x07be2065      0x07d1e045      0x07ce7045      0x01aec067
+(gdb) x/4wx 0xc6278000+0x3a4
+0xc62783a4:     0x07be2045      0x07d1e045      0x07ce7045      0x07cec067
+(gdb) p/x mem_map[0x7cec]
+$60 = {flags = 0x40040068, {mapping = 0xc0123ae1, s_mem = 0xc0123ae1}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e1ad74, prev = 0xc7e1adb4}, {next = 0xc7e1ad74,
+      pages = 0xadb4, pobjects = 0xc7e1}, callback_head = {next = 0xc7e1ad74,
+      func = 0xc7e1adb4}, {compound_head = 0xc7e1ad74, compound_dtor = 0xadb4,
+      compound_order = 0xc7e1}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x1aec]
+$61 = {flags = 0x40040068, {mapping = 0xc0123e81, s_mem = 0xc0123e81}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e1ac94, prev = 0xc7e1ac74}, {next = 0xc7e1ac94,
+      pages = 0xac74, pobjects = 0xc7e1}, callback_head = {next = 0xc7e1ac94,
+      func = 0xc7e1ac74}, {compound_head = 0xc7e1ac94, compound_dtor = 0xac74,
+      compound_order = 0xc7e1}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) p/x mem_map[0x7bc1]
+$62 = {flags = 0x40040068, {mapping = 0xc01230e9, s_mem = 0xc01230e9}, {{index = 0xa3,
+      freelist = 0xa3}, {counters = 0x0, {{_mapcount = {counter = 0x0}, {inuse = 0x0,
+            objects = 0x0, frozen = 0x0}, units = 0x0}, _count = {counter = 0x1}},
+      active = 0x0}}, {lru = {next = 0xc7e18814, prev = 0xc1983c18}, {next = 0xc7e18814,
+      pages = 0x3c18, pobjects = 0xc198}, callback_head = {next = 0xc7e18814,
+      func = 0xc1983c18}, {compound_head = 0xc7e18814, compound_dtor = 0x3c18,
+      compound_order = 0xc198}}, {private = 0x0, ptl = 0x0, slab_cache = 0x0}}
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134516501) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 8048f15
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134996172) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80be0cc
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134996172) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80be0cc
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134899504) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80a6730
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=134899504) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80a6730
+(gdb) c
+Continuing.
+
+Breakpoint 6, do_page_fault (regs=0xc627dfb4, error_code=4) at arch/x86/mm/fault.c:1295
+1295    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+(gdb) c
+Continuing.
+
+Breakpoint 5, __do_page_fault (regs=0xc627dfb4, error_code=4, address=135110756) at arch/x86/mm/fault.c:1067
+1067    {
+1: $lx_current().pid = 975
+2: $lx_current().comm = "abc\000\000er/0\000\000\000\000\000\000"
+address: 80da064
+(gdb) c
+Continuing.
+
+
