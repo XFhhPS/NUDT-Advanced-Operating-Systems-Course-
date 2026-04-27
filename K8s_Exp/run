@@ -1,0 +1,10 @@
+#!/bin/sh
+LINUX=$(find cur -maxdepth 0)
+#启动qemu
+if [ $# = 0 ] ; then
+    qemu-system-i386 -nographic -kernel $LINUX/arch/i386/boot/bzImage -initrd rootfs/rootfs.img.gz -append "root=/dev/ram rdinit=sbin/init noapic console=ttyS0 norandmaps" -device e1000,netdev=net0 -netdev user,id=net0,hostfwd=tcp:127.0.0.1:8080-:8080
+fi
+
+if [ "$1" = "s" ] ; then
+    qemu-system-i386 -nographic -kernel $LINUX/arch/i386/boot/bzImage -initrd rootfs/rootfs.img.gz -append "root=/dev/ram rdinit=sbin/init noapic console=ttyS0 norandmaps" -device e1000,netdev=net0 -netdev user,id=net0,hostfwd=tcp:127.0.0.1:8080-:8080 -s -S
+fi

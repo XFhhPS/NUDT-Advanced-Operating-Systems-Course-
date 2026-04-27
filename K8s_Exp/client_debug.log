@@ -1,0 +1,1318 @@
+Breakpoint 1 at 0xc153362e: file net/socket.c, line 617.
+Breakpoint 2 at 0xc15abc71: file net/ipv4/af_inet.c, line 726.
+Breakpoint 3 at 0xc158720d: file net/ipv4/tcp.c, line 1091.
+Breakpoint 4 at 0xc1592cce: file net/ipv4/tcp_output.c, line 905.
+Breakpoint 5 at 0xc157d1f0: file net/ipv4/ip_output.c, line 381.
+Breakpoint 6 at 0xc157d679: file net/ipv4/ip_output.c, line 351.
+Breakpoint 7 at 0xc157ba36: dst_neigh_output. (2 locations)
+Breakpoint 8 at 0xc157ba73: neigh_hh_output. (2 locations)
+Breakpoint 9 at 0xc154bb7c: file net/core/dev.c, line 3185.
+Breakpoint 10 at 0xc154a467: file net/core/dev.c, line 4848.
+Breakpoint 11 at 0xc154a068: file net/core/dev.c, line 4032.
+Breakpoint 12 at 0xc1578dea: file net/ipv4/ip_input.c, line 382.
+Breakpoint 13 at 0xc1532623: file net/socket.c, line 718.
+add symbol table from file "/home/nudt/client_in_to_out" at
+	.text_addr = 0x80482b0
+Breakpoint 14 at 0x8048e24: file client_in_to_out.c, line 12.
+
+Breakpoint 14, main () at client_in_to_out.c:12
+12	int main() {
+2: $lx_current().comm = [USER] Hit main()
+"client_in_to_ou"
+1: $lx_current().pid = 979
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc5db0000, clone_it=1, gfp_mask=37748928) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc5db0000
+$1 = 0
+0xc5d3ac10:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac18:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac20:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac28:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc5db00b8, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc5db00b8
+$2 = 40
+$3 = 0
+0xc5d3abe8:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa5	0xeb
+0xc5d3abf0:	0x00	0x00	0x00	0x00	0xa0	0x02	0x72	0x10
+0xc5d3abf8:	0x18	0x3f	0x00	0x00	0x02	0x04	0x05	0xb4
+0xc5d3ac00:	0x04	0x02	0x08	0x0a	0xff	0xfc	0xc9	0x4d
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc5db00b8) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc5db00b8
+$4 = 60
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc5db00b8) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc5db00b8
+$5 = 60
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4d80) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4d80
+$6 = 42
+$7 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d20a22:	0xff	0xff	0xff	0xff	0xff	0xff	0x52	0x54
+0xc5d20a2a:	0x00	0x12	0x34	0x56	0x08	0x06	0x00	0x01
+0xc5d20a32:	0x08	0x00	0x06	0x04	0x00	0x01	0x52	0x54
+0xc5d20a3a:	0x00	0x12	0x34	0x56	0x0a	0x00	0x02	0x0f
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc5db00b8) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc5db00b8
+$8 = 74
+$9 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3abc6:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d3abce:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3abd6:	0x00	0x3c	0x6c	0xab	0x40	0x00	0x40	0x06
+0xc5d3abde:	0xb6	0x00	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4d80, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4d80
+$10 = 8
+$11 = 0
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc153362e in sock_sendmsg at net/socket.c:617
+        printf "[SOCK] sock_sendmsg sock="
+        pptr sock
+        printf "\n"
+        p sock->sk_state
+        p sock->sk_portpair      # 网络序：高16=dport，低16=sport
+2       breakpoint     keep y   0xc15abc71 in inet_sendmsg at net/ipv4/af_inet.c:726
+        printf "[INET] inet_sendmsg entered\n"
+3       breakpoint     keep y   0xc158720d in tcp_sendmsg at net/ipv4/tcp.c:1091
+        printf "[TCP ] tcp_sendmsg sk="
+        pptr sk
+        printf "\n"
+        p sk->sk_state
+        p/x sk->__sk_common.skc_daddr
+        p/x sk->__sk_common.skc_rcv_saddr
+4       breakpoint     keep y   0xc1592cce in tcp_transmit_skb at net/ipv4/tcp_output.c:905
+	breakpoint already hit 1 time
+        printf "[TCP ] tcp_transmit_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+5       breakpoint     keep y   0xc157d1f0 in ip_queue_xmit at net/ipv4/ip_output.c:381
+	breakpoint already hit 1 time
+        set $_skb = skb
+        printf "[IP  ] ip_queue_xmit skb="
+        pptr $_skb
+        printf "\n"
+        p $_skb->len
+        p $_skb->protocol
+        x/32bx $_skb->data
+6       breakpoint     keep y   0xc157d679 in ip_output at net/ipv4/ip_output.c:351
+	breakpoint already hit 1 time
+        printf "[IP  ] ip_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 1 time
+        printf "[DST ] dst_neigh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7.1                         y     0xc157ba36 in ip_finish_output2 at include/net/dst.h:442
+7.2                         y     0xc15db19e in ip6_finish_output2 at include/net/dst.h:442
+8       breakpoint     keep y   <MULTIPLE> 
+        printf "[DST ] neigh_hh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+8.1                         y     0xc157ba73 in ip_finish_output2 at include/net/neighbour.h:463
+8.2                         y     0xc15db1db in ip6_finish_output2 at include/net/neighbour.h:463
+9       breakpoint     keep y   0xc154bb7c in dev_queue_xmit at net/core/dev.c:3185
+	breakpoint already hit 2 times
+        printf "[DEV ] dev_queue_xmit skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        p skb->dev->name
+        x/32bx skb->data
+10      breakpoint     keep y   0xc154a467 in net_rx_action at net/core/dev.c:4848
+	breakpoint already hit 1 time
+        bt
+11      breakpoint     keep y   0xc154a068 in netif_receive_skb at net/core/dev.c:4032
+        printf "[RX  ] netif_receive_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+12      breakpoint     keep y   0xc1578dea in ip_rcv at net/ipv4/ip_input.c:382
+	breakpoint already hit 1 time
+        printf "[RX  ] ip_rcv skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+        p skb->hash
+13      breakpoint     keep y   0xc1532623 in sock_recvmsg at net/socket.c:718
+        printf "[SOCK] sock_recvmsg called\n"
+14      breakpoint     keep y   0x08048e24 in main at client_in_to_out.c:12
+	breakpoint already hit 1 time
+        printf "[USER] Hit main()\n"
+        stop
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4480, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4480
+$12 = 8
+$13 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4300, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4300
+$14 = 8
+$15 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4600, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4600
+$16 = 8
+$17 = 0
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4000, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4000
+$18 = 0
+0xc5d3ac10:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac18:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac20:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac28:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4000, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4000
+$19 = 20
+$20 = 0
+0xc5d3abfc:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa5	0xec
+0xc5d3ac04:	0x00	0xe4	0x84	0x02	0x50	0x10	0x72	0x10
+0xc5d3ac0c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac14:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4000) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4000
+$21 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4000) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4000
+$22 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4000) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4000
+$23 = 54
+$24 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3abda:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d3abe2:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3abea:	0x00	0x28	0x6c	0xac	0x40	0x00	0x40	0x06
+0xc5d3abf2:	0xb6	0x13	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4000, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4000
+$25 = 8
+$26 = 0
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "ksoftirqd/0\000\000\000\000"
+1: $lx_current().pid = 3
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+#3  0xc1018248 in do_softirq_own_stack () at arch/x86/kernel/irq_32.c:147
+#4  0xc104dd76 in invoke_softirq () at kernel/softirq.c:357
+#5  irq_exit () at kernel/softirq.c:391
+#6  0xc1034d35 in exiting_irq () at ./arch/x86/include/asm/apic.h:652
+#7  smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:926
+#8  0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#9  0xc7ca0f40 in ?? ()
+#10 0xc1069215 in finish_lock_switch (prev=<optimized out>, rq=<optimized out>) at kernel/sched/sched.h:1094
+#11 finish_task_switch (prev=0xc5da0000) at kernel/sched/core.c:2577
+#12 0xc16d175d in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2706
+#13 __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#14 0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#15 0xc1064845 in smpboot_thread_fn (data=0xc7403840) at kernel/smpboot.c:159
+#16 0xc106206a in kthread (_create=0xc74b04e0) at kernel/kthread.c:209
+#17 0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#18 0x00000000 in ?? ()
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4180, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4180
+$27 = 0
+0xc5d3ac10:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac18:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac20:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac28:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4180, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4180
+$28 = 20
+$29 = 0
+0xc5d3abfc:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa5	0xec
+0xc5d3ac04:	0x00	0xe4	0x84	0x02	0x50	0x10	0x72	0x10
+0xc5d3ac0c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac14:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4180) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4180
+$30 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4180) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4180
+$31 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4180) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4180
+$32 = 54
+$33 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3abda:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d3abe2:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3abea:	0x00	0x28	0x6c	0xad	0x40	0x00	0x40	0x06
+0xc5d3abf2:	0xb6	0x12	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 1, sock_sendmsg (sock=0xc0c017c0, msg=0xc0143e4c) at net/socket.c:617
+617	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[SOCK] sock_sendmsg sock=0xc0c017c0
+There is no member named sk_state.
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc153362e in sock_sendmsg at net/socket.c:617
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_sendmsg sock="
+        pptr sock
+        printf "\n"
+        p sock->sk_state
+        p sock->sk_portpair      # 网络序：高16=dport，低16=sport
+2       breakpoint     keep y   0xc15abc71 in inet_sendmsg at net/ipv4/af_inet.c:726
+        printf "[INET] inet_sendmsg entered\n"
+3       breakpoint     keep y   0xc158720d in tcp_sendmsg at net/ipv4/tcp.c:1091
+        printf "[TCP ] tcp_sendmsg sk="
+        pptr sk
+        printf "\n"
+        p sk->sk_state
+        p/x sk->__sk_common.skc_daddr
+        p/x sk->__sk_common.skc_rcv_saddr
+4       breakpoint     keep y   0xc1592cce in tcp_transmit_skb at net/ipv4/tcp_output.c:905
+	breakpoint already hit 3 times
+        printf "[TCP ] tcp_transmit_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+5       breakpoint     keep y   0xc157d1f0 in ip_queue_xmit at net/ipv4/ip_output.c:381
+	breakpoint already hit 3 times
+        set $_skb = skb
+        printf "[IP  ] ip_queue_xmit skb="
+        pptr $_skb
+        printf "\n"
+        p $_skb->len
+        p $_skb->protocol
+        x/32bx $_skb->data
+6       breakpoint     keep y   0xc157d679 in ip_output at net/ipv4/ip_output.c:351
+	breakpoint already hit 3 times
+        printf "[IP  ] ip_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 3 times
+        printf "[DST ] dst_neigh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7.1                         y     0xc157ba36 in ip_finish_output2 at include/net/dst.h:442
+7.2                         y     0xc15db19e in ip6_finish_output2 at include/net/dst.h:442
+8       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 2 times
+        printf "[DST ] neigh_hh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+8.1                         y     0xc157ba73 in ip_finish_output2 at include/net/neighbour.h:463
+8.2                         y     0xc15db1db in ip6_finish_output2 at include/net/neighbour.h:463
+9       breakpoint     keep y   0xc154bb7c in dev_queue_xmit at net/core/dev.c:3185
+	breakpoint already hit 4 times
+        printf "[DEV ] dev_queue_xmit skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        p skb->dev->name
+        x/32bx skb->data
+10      breakpoint     keep y   0xc154a467 in net_rx_action at net/core/dev.c:4848
+	breakpoint already hit 5 times
+        bt
+11      breakpoint     keep y   0xc154a068 in netif_receive_skb at net/core/dev.c:4032
+        printf "[RX  ] netif_receive_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+12      breakpoint     keep y   0xc1578dea in ip_rcv at net/ipv4/ip_input.c:382
+	breakpoint already hit 5 times
+        printf "[RX  ] ip_rcv skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+        p skb->hash
+13      breakpoint     keep y   0xc1532623 in sock_recvmsg at net/socket.c:718
+        printf "[SOCK] sock_recvmsg called\n"
+14      breakpoint     keep y   0x08048e24 in main at client_in_to_out.c:12
+	breakpoint already hit 1 time
+        printf "[USER] Hit main()\n"
+        stop
+Continuing.
+
+Breakpoint 2, inet_sendmsg (sock=0xc0c017c0, msg=0xc0143e4c, size=21) at net/ipv4/af_inet.c:726
+726	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[INET] inet_sendmsg entered
+Continuing.
+
+Breakpoint 3, tcp_sendmsg (sk=0xc5e28000, msg=0xc0143e4c, size=21) at net/ipv4/tcp.c:1091
+1091	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_sendmsg sk=0xc5e28000
+There is no member named sk_state.
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc5db0000, clone_it=1, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc5db0000
+$34 = 21
+0xc5d1a3d0:	0xe5	0xae	0xa2	0xe6	0x88	0xb7	0xe7	0xab
+0xc5d1a3d8:	0xaf	0xe6	0xb5	0x8b	0xe8	0xaf	0x95	0xe6
+0xc5d1a3e0:	0x95	0xb0	0xe6	0x8d	0xae	0x6b	0x6b	0x6b
+0xc5d1a3e8:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc5db00b8, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc5db00b8
+$35 = 41
+$36 = 0
+0xc5d1a3bc:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa5	0xec
+0xc5d1a3c4:	0x00	0xe4	0x84	0x02	0x50	0x18	0x72	0x10
+0xc5d1a3cc:	0x18	0x40	0x00	0x00	0xe5	0xae	0xa2	0xe6
+0xc5d1a3d4:	0x88	0xb7	0xe7	0xab	0xaf	0xe6	0xb5	0x8b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc5db00b8) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc5db00b8
+$37 = 61
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc5db00b8) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc5db00b8
+$38 = 61
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc5db00b8) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc5db00b8
+$39 = 75
+$40 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d1a39a:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d1a3a2:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d1a3aa:	0x00	0x3d	0x6c	0xae	0x40	0x00	0x40	0x06
+0xc5d1a3b2:	0xb5	0xfc	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc153362e in sock_sendmsg at net/socket.c:617
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_sendmsg sock="
+        pptr sock
+        printf "\n"
+        p sock->sk_state
+        p sock->sk_portpair      # 网络序：高16=dport，低16=sport
+2       breakpoint     keep y   0xc15abc71 in inet_sendmsg at net/ipv4/af_inet.c:726
+	breakpoint already hit 1 time
+        printf "[INET] inet_sendmsg entered\n"
+3       breakpoint     keep y   0xc158720d in tcp_sendmsg at net/ipv4/tcp.c:1091
+	breakpoint already hit 1 time
+        printf "[TCP ] tcp_sendmsg sk="
+        pptr sk
+        printf "\n"
+        p sk->sk_state
+        p/x sk->__sk_common.skc_daddr
+        p/x sk->__sk_common.skc_rcv_saddr
+4       breakpoint     keep y   0xc1592cce in tcp_transmit_skb at net/ipv4/tcp_output.c:905
+	breakpoint already hit 4 times
+        printf "[TCP ] tcp_transmit_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+5       breakpoint     keep y   0xc157d1f0 in ip_queue_xmit at net/ipv4/ip_output.c:381
+	breakpoint already hit 4 times
+        set $_skb = skb
+        printf "[IP  ] ip_queue_xmit skb="
+        pptr $_skb
+        printf "\n"
+        p $_skb->len
+        p $_skb->protocol
+        x/32bx $_skb->data
+6       breakpoint     keep y   0xc157d679 in ip_output at net/ipv4/ip_output.c:351
+	breakpoint already hit 4 times
+        printf "[IP  ] ip_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 4 times
+        printf "[DST ] dst_neigh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7.1                         y     0xc157ba36 in ip_finish_output2 at include/net/dst.h:442
+7.2                         y     0xc15db19e in ip6_finish_output2 at include/net/dst.h:442
+8       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 3 times
+        printf "[DST ] neigh_hh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+8.1                         y     0xc157ba73 in ip_finish_output2 at include/net/neighbour.h:463
+8.2                         y     0xc15db1db in ip6_finish_output2 at include/net/neighbour.h:463
+9       breakpoint     keep y   0xc154bb7c in dev_queue_xmit at net/core/dev.c:3185
+	breakpoint already hit 5 times
+        printf "[DEV ] dev_queue_xmit skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        p skb->dev->name
+        x/32bx skb->data
+10      breakpoint     keep y   0xc154a467 in net_rx_action at net/core/dev.c:4848
+	breakpoint already hit 6 times
+        bt
+11      breakpoint     keep y   0xc154a068 in netif_receive_skb at net/core/dev.c:4032
+        printf "[RX  ] netif_receive_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+12      breakpoint     keep y   0xc1578dea in ip_rcv at net/ipv4/ip_input.c:382
+	breakpoint already hit 5 times
+        printf "[RX  ] ip_rcv skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+        p skb->hash
+13      breakpoint     keep y   0xc1532623 in sock_recvmsg at net/socket.c:718
+        printf "[SOCK] sock_recvmsg called\n"
+14      breakpoint     keep y   0x08048e24 in main at client_in_to_out.c:12
+	breakpoint already hit 1 time
+        printf "[USER] Hit main()\n"
+        stop
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4180, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4180
+$41 = 8
+$42 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4c00, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4c00
+$43 = 8
+$44 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4000, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4000
+$45 = 8
+$46 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4a80, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4a80
+$47 = 8
+$48 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4600, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4600
+$49 = 8
+$50 = 0
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4900, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4900
+$51 = 8
+$52 = 0
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4180, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4180
+$53 = 0
+0xc5d3ac10:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac18:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac20:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac28:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4180, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4180
+$54 = 20
+$55 = 0
+0xc5d3abfc:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa6	0x01
+0xc5d3ac04:	0x00	0xe4	0x84	0x22	0x50	0x10	0x72	0x10
+0xc5d3ac0c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d3ac14:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4180) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4180
+$56 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4180) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4180
+$57 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4180) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4180
+$58 = 54
+$59 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3abda:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d3abe2:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3abea:	0x00	0x28	0x6c	0xaf	0x40	0x00	0x40	0x06
+0xc5d3abf2:	0xb6	0x10	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4a80, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4a80
+$60 = 0
+0xc5d39690:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39698:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d396a0:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d396a8:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4a80, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4a80
+$61 = 20
+$62 = 0
+0xc5d3967c:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa6	0x01
+0xc5d39684:	0x00	0xe4	0x84	0x23	0x50	0x10	0x72	0x10
+0xc5d3968c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d39694:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4a80) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4a80
+$63 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4a80) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4a80
+$64 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4a80) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4a80
+$65 = 54
+$66 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3965a:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d39662:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3966a:	0x00	0x28	0x6c	0xb0	0x40	0x00	0x40	0x06
+0xc5d39672:	0xb6	0x0f	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4600, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4600
+$67 = 0
+0xc5d393e0:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d393e8:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d393f0:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d393f8:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4600, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4600
+$68 = 20
+$69 = 0
+0xc5d393cc:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa6	0x01
+0xc5d393d4:	0x00	0xe4	0x84	0x23	0x50	0x10	0x72	0x10
+0xc5d393dc:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d393e4:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4600) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4600
+$70 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4600) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4600
+$71 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4600) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4600
+$72 = 54
+$73 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d393aa:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d393b2:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d393ba:	0x00	0x28	0x6c	0xb1	0x40	0x00	0x40	0x06
+0xc5d393c2:	0xb6	0x0e	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc76a4900, clone_it=0, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc76a4900
+$74 = 0
+0xc5d39940:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39948:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39950:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39958:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc76a4900, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc76a4900
+$75 = 20
+$76 = 0
+0xc5d3992c:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa6	0x01
+0xc5d39934:	0x00	0xe4	0x84	0x23	0x50	0x10	0x72	0x10
+0xc5d3993c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d39944:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc76a4900) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc76a4900
+$77 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc76a4900) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc76a4900
+$78 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc76a4900) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc76a4900
+$79 = 54
+$80 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3990a:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d39912:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3991a:	0x00	0x28	0x6c	0xb2	0x40	0x00	0x40	0x06
+0xc5d39922:	0xb6	0x0d	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "ksoftirqd/0\000\000\000\000"
+1: $lx_current().pid = 3
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+#3  0xc1018248 in do_softirq_own_stack () at arch/x86/kernel/irq_32.c:147
+#4  0xc104dd76 in invoke_softirq () at kernel/softirq.c:357
+#5  irq_exit () at kernel/softirq.c:391
+#6  0xc1034d35 in exiting_irq () at ./arch/x86/include/asm/apic.h:652
+#7  smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:926
+#8  0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#9  0xc7ca0f40 in ?? ()
+#10 0xc1069215 in finish_lock_switch (prev=<optimized out>, rq=<optimized out>) at kernel/sched/sched.h:1094
+#11 finish_task_switch (prev=0xc5da0000) at kernel/sched/core.c:2577
+#12 0xc16d175d in context_switch (next=<optimized out>, prev=<optimized out>, rq=<optimized out>) at kernel/sched/core.c:2706
+#13 __schedule (preempt=<optimized out>) at kernel/sched/core.c:3180
+#14 0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#15 0xc1064845 in smpboot_thread_fn (data=0xc7403840) at kernel/smpboot.c:159
+#16 0xc106206a in kthread (_create=0xc74b04e0) at kernel/kthread.c:209
+#17 0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#18 0x00000000 in ?? ()
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "ksoftirqd/0\000\000\000\000"
+1: $lx_current().pid = 3
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+#3  0xc1018248 in do_softirq_own_stack () at arch/x86/kernel/irq_32.c:147
+#4  0xc104dd76 in invoke_softirq () at kernel/softirq.c:357
+#5  irq_exit () at kernel/softirq.c:391
+#6  0xc1034d35 in exiting_irq () at ./arch/x86/include/asm/apic.h:652
+#7  smp_apic_timer_interrupt (regs=<optimized out>) at arch/x86/kernel/apic/apic.c:926
+#8  0xc16d5a4d in apic_timer_interrupt () at ./arch/x86/include/asm/entry_arch.h:39
+#9  0xc74f8ce8 in ?? ()
+#10 0xc16d176a in __schedule (preempt=false) at kernel/sched/core.c:3184
+#11 0xc16d1805 in schedule () at kernel/sched/core.c:3209
+#12 0xc1064845 in smpboot_thread_fn (data=0xc7403840) at kernel/smpboot.c:159
+#13 0xc106206a in kthread (_create=0xc74b04e0) at kernel/kthread.c:209
+#14 0xc16d4fc9 in ret_from_kernel_thread () at arch/x86/entry/entry_32.S:229
+#15 0x00000000 in ?? ()
+Continuing.
+
+Breakpoint 13, sock_recvmsg (sock=0xc0c017c0, msg=0xc0143e9c, size=1024, flags=0) at net/socket.c:718
+718	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[SOCK] sock_recvmsg called
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc153362e in sock_sendmsg at net/socket.c:617
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_sendmsg sock="
+        pptr sock
+        printf "\n"
+        p sock->sk_state
+        p sock->sk_portpair      # 网络序：高16=dport，低16=sport
+2       breakpoint     keep y   0xc15abc71 in inet_sendmsg at net/ipv4/af_inet.c:726
+	breakpoint already hit 1 time
+        printf "[INET] inet_sendmsg entered\n"
+3       breakpoint     keep y   0xc158720d in tcp_sendmsg at net/ipv4/tcp.c:1091
+	breakpoint already hit 1 time
+        printf "[TCP ] tcp_sendmsg sk="
+        pptr sk
+        printf "\n"
+        p sk->sk_state
+        p/x sk->__sk_common.skc_daddr
+        p/x sk->__sk_common.skc_rcv_saddr
+4       breakpoint     keep y   0xc1592cce in tcp_transmit_skb at net/ipv4/tcp_output.c:905
+	breakpoint already hit 8 times
+        printf "[TCP ] tcp_transmit_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+5       breakpoint     keep y   0xc157d1f0 in ip_queue_xmit at net/ipv4/ip_output.c:381
+	breakpoint already hit 8 times
+        set $_skb = skb
+        printf "[IP  ] ip_queue_xmit skb="
+        pptr $_skb
+        printf "\n"
+        p $_skb->len
+        p $_skb->protocol
+        x/32bx $_skb->data
+6       breakpoint     keep y   0xc157d679 in ip_output at net/ipv4/ip_output.c:351
+	breakpoint already hit 8 times
+        printf "[IP  ] ip_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 8 times
+        printf "[DST ] dst_neigh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7.1                         y     0xc157ba36 in ip_finish_output2 at include/net/dst.h:442
+7.2                         y     0xc15db19e in ip6_finish_output2 at include/net/dst.h:442
+8       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 7 times
+        printf "[DST ] neigh_hh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+8.1                         y     0xc157ba73 in ip_finish_output2 at include/net/neighbour.h:463
+8.2                         y     0xc15db1db in ip6_finish_output2 at include/net/neighbour.h:463
+9       breakpoint     keep y   0xc154bb7c in dev_queue_xmit at net/core/dev.c:3185
+	breakpoint already hit 9 times
+        printf "[DEV ] dev_queue_xmit skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        p skb->dev->name
+        x/32bx skb->data
+10      breakpoint     keep y   0xc154a467 in net_rx_action at net/core/dev.c:4848
+	breakpoint already hit 11 times
+        bt
+11      breakpoint     keep y   0xc154a068 in netif_receive_skb at net/core/dev.c:4032
+        printf "[RX  ] netif_receive_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+12      breakpoint     keep y   0xc1578dea in ip_rcv at net/ipv4/ip_input.c:382
+	breakpoint already hit 11 times
+        printf "[RX  ] ip_rcv skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+        p skb->hash
+13      breakpoint     keep y   0xc1532623 in sock_recvmsg at net/socket.c:718
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_recvmsg called\n"
+14      breakpoint     keep y   0x08048e24 in main at client_in_to_out.c:12
+	breakpoint already hit 1 time
+        printf "[USER] Hit main()\n"
+        stop
+Continuing.
+
+Breakpoint 4, tcp_transmit_skb (sk=0xc5e28000, skb=0xc5db0000, clone_it=1, gfp_mask=34078752) at net/ipv4/tcp_output.c:905
+905	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[TCP ] tcp_transmit_skb skb=0xc5db0000
+$81 = 0
+0xc5d39940:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39948:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39950:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+0xc5d39958:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Num     Type           Disp Enb Address    What
+1       breakpoint     keep y   0xc153362e in sock_sendmsg at net/socket.c:617
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_sendmsg sock="
+        pptr sock
+        printf "\n"
+        p sock->sk_state
+        p sock->sk_portpair      # 网络序：高16=dport，低16=sport
+2       breakpoint     keep y   0xc15abc71 in inet_sendmsg at net/ipv4/af_inet.c:726
+	breakpoint already hit 1 time
+        printf "[INET] inet_sendmsg entered\n"
+3       breakpoint     keep y   0xc158720d in tcp_sendmsg at net/ipv4/tcp.c:1091
+	breakpoint already hit 1 time
+        printf "[TCP ] tcp_sendmsg sk="
+        pptr sk
+        printf "\n"
+        p sk->sk_state
+        p/x sk->__sk_common.skc_daddr
+        p/x sk->__sk_common.skc_rcv_saddr
+4       breakpoint     keep y   0xc1592cce in tcp_transmit_skb at net/ipv4/tcp_output.c:905
+	breakpoint already hit 9 times
+        printf "[TCP ] tcp_transmit_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+5       breakpoint     keep y   0xc157d1f0 in ip_queue_xmit at net/ipv4/ip_output.c:381
+	breakpoint already hit 8 times
+        set $_skb = skb
+        printf "[IP  ] ip_queue_xmit skb="
+        pptr $_skb
+        printf "\n"
+        p $_skb->len
+        p $_skb->protocol
+        x/32bx $_skb->data
+6       breakpoint     keep y   0xc157d679 in ip_output at net/ipv4/ip_output.c:351
+	breakpoint already hit 8 times
+        printf "[IP  ] ip_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 8 times
+        printf "[DST ] dst_neigh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+7.1                         y     0xc157ba36 in ip_finish_output2 at include/net/dst.h:442
+7.2                         y     0xc15db19e in ip6_finish_output2 at include/net/dst.h:442
+8       breakpoint     keep y   <MULTIPLE> 
+	breakpoint already hit 7 times
+        printf "[DST ] neigh_hh_output skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+8.1                         y     0xc157ba73 in ip_finish_output2 at include/net/neighbour.h:463
+8.2                         y     0xc15db1db in ip6_finish_output2 at include/net/neighbour.h:463
+9       breakpoint     keep y   0xc154bb7c in dev_queue_xmit at net/core/dev.c:3185
+	breakpoint already hit 9 times
+        printf "[DEV ] dev_queue_xmit skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        p skb->dev->name
+        x/32bx skb->data
+10      breakpoint     keep y   0xc154a467 in net_rx_action at net/core/dev.c:4848
+	breakpoint already hit 11 times
+        bt
+11      breakpoint     keep y   0xc154a068 in netif_receive_skb at net/core/dev.c:4032
+        printf "[RX  ] netif_receive_skb skb="
+        pptr skb
+        printf "\n"
+        p skb->len
+        x/32bx skb->data
+12      breakpoint     keep y   0xc1578dea in ip_rcv at net/ipv4/ip_input.c:382
+	breakpoint already hit 11 times
+        printf "[RX  ] ip_rcv skb="
+        pptr skb
+        printf "\n"
+        p skb->protocol
+        p skb->hash
+13      breakpoint     keep y   0xc1532623 in sock_recvmsg at net/socket.c:718
+	breakpoint already hit 1 time
+        printf "[SOCK] sock_recvmsg called\n"
+14      breakpoint     keep y   0x08048e24 in main at client_in_to_out.c:12
+	breakpoint already hit 1 time
+        printf "[USER] Hit main()\n"
+        stop
+Continuing.
+
+Breakpoint 5, ip_queue_xmit (sk=0xc5e28000, skb=0xc5db00b8, fl=0xc5e28288) at net/ipv4/ip_output.c:381
+381	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_queue_xmit skb=0xc5db00b8
+$82 = 20
+$83 = 0
+0xc5d3992c:	0x95	0xea	0x1f	0x91	0x41	0x17	0xa6	0x01
+0xc5d39934:	0x00	0xe4	0x84	0x23	0x50	0x11	0x72	0x10
+0xc5d3993c:	0x18	0x2b	0x00	0x00	0x6b	0x6b	0x6b	0x6b
+0xc5d39944:	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b	0x6b
+Continuing.
+
+Breakpoint 6, ip_output (net=0xc1992a00 <init_net>, sk=0xc5e28000, skb=0xc5db00b8) at net/ipv4/ip_output.c:351
+351	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[IP  ] ip_output skb=0xc5db00b8
+$84 = 40
+Continuing.
+
+Breakpoint 7, ip_finish_output2 (net=<optimized out>, sk=<optimized out>, skb=0xc5db00b8) at net/ipv4/ip_output.c:210
+210			int res = dst_neigh_output(dst, neigh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] dst_neigh_output skb=0xc5db00b8
+$85 = 40
+Continuing.
+
+Breakpoint 8, dst_neigh_output (skb=<optimized out>, n=<optimized out>, dst=<optimized out>) at include/net/dst.h:453
+453			return neigh_hh_output(hh, skb);
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DST ] neigh_hh_output skb=value has been optimized out
+Continuing.
+
+Breakpoint 9, dev_queue_xmit (skb=0xc5db00b8) at net/core/dev.c:3185
+3185	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[DEV ] dev_queue_xmit skb=0xc5db00b8
+$86 = 54
+$87 = "eth0\000\000\060:03.0\000\000\000"
+0xc5d3990a:	0x52	0x55	0x0a	0x00	0x02	0x02	0x52	0x54
+0xc5d39912:	0x00	0x12	0x34	0x56	0x08	0x00	0x45	0x00
+0xc5d3991a:	0x00	0x28	0x6c	0xb3	0x40	0x00	0x40	0x06
+0xc5d39922:	0xb6	0x0c	0x0a	0x00	0x02	0x0f	0x0a	0x00
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+Continuing.
+
+Breakpoint 12, ip_rcv (skb=0xc76a4c00, dev=0xc769a160, pt=0xc19c3cd8 <ip_packet_type>, orig_dev=0xc769a160) at net/ipv4/ip_input.c:382
+382	{
+2: $lx_current().comm = "client_in_to_ou"
+1: $lx_current().pid = 979
+[RX  ] ip_rcv skb=0xc76a4c00
+$88 = 8
+$89 = 0
+Continuing.
+
+Breakpoint 10, net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+4848	{
+2: $lx_current().comm = "kworker/0:2\000\000\000\000"
+1: $lx_current().pid = 844
+#0  net_rx_action (h=0xc191a20c <softirq_vec+12>) at net/core/dev.c:4848
+#1  0xc104da9a in __do_softirq () at kernel/softirq.c:273
+#2  0xc101814e in call_on_stack (func=0xc191a20c <softirq_vec+12>, stack=0xffffffff) at arch/x86/kernel/irq_32.c:57
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
